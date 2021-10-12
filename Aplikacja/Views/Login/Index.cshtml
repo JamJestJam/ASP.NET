@@ -1,0 +1,34 @@
+﻿@model ICollection<Aplikacja.Models.User>
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Panel logowania</h1>
+<h3>Zaloguj się</h3>
+
+<h3><a class="btn btn-primary" asp-controller="Login" asp-action="Add">Zarejestruj się</a></h3>
+
+<table border="1">
+    <tr>
+        <td>Login</td>
+        <td>Haslo</td>
+        <td>Email</td>
+        <td>Data urodzenia</td>
+        <td>Usuń</td>
+        <td>Edytuj</td>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Login </td>
+            <td>@user.Password</td>
+            <td>@user.Email</td>
+            <td>@user.BirthDate</td>
+            <td><a class="btn btn-primary" asp-controller="Login" asp-action="Remove">Remove</a></td>
+            <td><a class="btn btn-primary" asp-controller="Login" asp-action="Update">Update</a></td>
+        </tr>
+    }
+</table>

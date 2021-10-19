@@ -11,6 +11,8 @@
 
 <h3><a class="btn btn-primary" asp-controller="Login" asp-action="Add">Zarejestruj się</a></h3>
 
+<h1>Lista urzytkowników</h1>
+
 <table border="1">
     <tr>
         <td>Login</td>
@@ -27,8 +29,8 @@
             <td>@user.Password</td>
             <td>@user.Email</td>
             <td>@user.BirthDate</td>
-            <td><a class="btn btn-primary" asp-controller="Login" asp-action="Remove">Remove</a></td>
-            <td><a class="btn btn-primary" asp-controller="Login" asp-action="Update">Update</a></td>
+            <td><a class="btn btn-primary" asp-controller="Login" asp-action="Remove" asp-route-id="@user.UserID">Remove</a></td>
+            <td><a class="btn btn-primary" asp-controller="Login" asp-action="Update" asp-route-id="@user.UserID">Update</a></td>
         </tr>
     }
 </table>

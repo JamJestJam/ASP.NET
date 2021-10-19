@@ -1,0 +1,33 @@
+﻿@model ICollection<Aplikacja.Models.Comment>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h3><a class="btn btn-primary" asp-controller="Comment" asp-action="Add">Dodaj komentarz</a></h3>
+
+<h1>Lista komentarzy</h1>
+
+
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>User</td>
+        <td>Image</td>
+        <td>Text</td>
+        <td>Zmień</td>
+        <td>Usuń</td>
+    </tr>
+    @foreach (var comment in Model)
+    {
+        <tr>
+            <td>@comment.CommentID </td>
+            <td>@comment.UserID</td>
+            <td>@comment.ImageID</td>
+            <td>@comment.CommentText</td>
+            <td><a class="btn btn-primary" asp-controller="Comment" asp-action="Remove" asp-route-id="@comment.CommentID">Remove</a></td>
+            <td><a class="btn btn-primary" asp-controller="Comment" asp-action="Update" asp-route-id="@comment.CommentID">Update</a></td>
+        </tr>
+    }
+</table>

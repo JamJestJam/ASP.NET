@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,12 +9,14 @@ namespace Aplikacja.Models
 {
     public class User
     {
+        [HiddenInput]
         [Required(ErrorMessage = "Wymagane jest ID")]
-        public int ID { get; set; }
+        public int UserID { get; set; }
         [Required(ErrorMessage = "Wymagana jest nazwa użytkownika")]
         public string Login { get; set; }
-        [Required(ErrorMessage = "Wymagane jest hasło")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Wymagane jest hasło")]
+        [RegularExpression("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "Wymagane jest silne hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.EmailAddress)]

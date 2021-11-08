@@ -34,6 +34,8 @@ namespace Aplikacja.Controllers
             },
         };
 
+        static private int Top = 3;
+
         public IActionResult Index()
         {
             return View(model: Users);
@@ -49,6 +51,7 @@ namespace Aplikacja.Controllers
 
             if (ModelState.IsValid)
             {
+                user.UserID = Top++;
                 Users.Add(user);
                 return View("Index", Users);
             }
@@ -60,14 +63,14 @@ namespace Aplikacja.Controllers
 
         public IActionResult Remove(int id)
         {
-            Users.RemoveAt(id);
+            Users.Remove(Users.First(a => a.UserID == id));
             return View("Index", model: Users);
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(model: Users[id]);
+            return View(model: Users.First(a => a.UserID == id));
         }
 
         [HttpPost]
@@ -75,7 +78,7 @@ namespace Aplikacja.Controllers
         {
             if (ModelState.IsValid)
             {
-                Users[user.UserID] = user;
+                Users[Users.IndexOf(Users.First(a => a.UserID == user.UserID))] = user;
                 return View("Index", Users);
             }
             else

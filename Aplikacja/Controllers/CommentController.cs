@@ -9,21 +9,18 @@ namespace Aplikacja.Controllers
         static private List<Comment> comments = new List<Comment>() {
             new Comment()
             {
-                CommentID = 0,
                 CommentText = "Ha ha ha",
                 UserID = 0,
                 ImageID = 0
             },
             new Comment()
             {
-                CommentID = 1,
                 CommentText = "Lol fajne",
                 UserID = 0,
                 ImageID = 0
             },
             new Comment()
             {
-                CommentID = 2,
                 CommentText = "Kopiuje",
                 UserID = 0,
                 ImageID = 0
@@ -48,7 +45,6 @@ namespace Aplikacja.Controllers
 
             if (ModelState.IsValid)
             {
-                comment.CommentID = Count;
                 comments.Add(comment);
                 return View("Index", comments);
             }

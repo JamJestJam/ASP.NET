@@ -29,8 +29,9 @@ namespace Aplikacja.Models
         public string Email { get; set; }
         public DateTime BirthDate { get; set; } = DateTime.Now;
 
-        public ICollection<Image> Images { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        //public ICollection<Image> Images { get; set; }
+        //public ICollection<Comment> Comments { get; set; }
+        public ICollection<Rate> Rates { get; set; }
 
         internal static void ModelCreate(ModelBuilder builder)
         {
@@ -41,6 +42,66 @@ namespace Aplikacja.Models
             builder.Entity<User>()
                 .HasIndex(a => a.Email)
                 .IsUnique(true);
+        }
+    }
+
+    public interface ICrudUserRepository
+    {
+        User Find(int id);
+        User Add(User user);
+        User Update(User user);
+        User remove(int id);
+
+        IList<User> GetAll();
+        IList<User> GetPage(int Page, int perPage = 2);
+    }
+
+    public class CrudUserRepository : ICrudUserRepository
+    {
+        private DB db;
+
+        public CrudUserRepository(DB db)
+        {
+            this.db = db;
+        }
+
+        public User Add(User user)
+        {
+            User entity = db.Users.Add(user).Entity;
+            db.SaveChanges();
+            return entity;
+        }
+
+        public User Find(int id)
+        {
+            User entity = db.Users.FirstOrDefault(a => a.UserID == id);
+            return entity;
+        }
+
+        public IList<User> GetAll()
+        {
+            List<User> entities = db.Users.ToList();
+            return entities;
+        }
+
+        public IList<User> GetPage(int Page, int perPage = 2)
+        {
+            List<User> entities = db.Users.OrderBy(a => a.Login).Skip(Page * perPage).Take(perPage).ToList();
+            return entities;
+        }
+
+        public User remove(int id)
+        {
+            User entity = db.Users.Remove(db.Users.FirstOrDefault(a => a.UserID == id)).Entity;
+            db.SaveChanges();
+            return entity;
+        }
+
+        public User Update(User user)
+        {
+            User entity = db.Users.Update(user).Entity;
+            db.SaveChanges();
+            return entity;
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Aplikacja
         {
             services.AddDbContext<DB>(options => options.UseSqlServer(Configuration["DataBase:Connect"]));
             services.AddTransient<IDB, Ef>();
+            services.AddTransient<ICrudUserRepository, CrudUserRepository>();
             services.AddControllersWithViews();
         }
 

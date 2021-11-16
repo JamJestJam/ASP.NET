@@ -9,43 +9,26 @@ namespace Aplikacja.Controllers
 {
     public class LoginController : Controller
     {
-        //static private List<User> Users = new List<User>()
-        //{
-        //    new User()
-        //    {
-        //        UserID=0,
-        //        Login="marek1",
-        //        Password="zaq1@WSX",
-        //        Email="marek1@cos.com"
-        //    },
-        //    new User()
-        //    {
-        //        UserID=1,
-        //        Login="marek2",
-        //        Password="zaq1@WSX",
-        //        Email="marek2@cos.com"
-        //    },
-        //    new User()
-        //    {
-        //        UserID=2,
-        //        Login="marek3",
-        //        Password="zaq1@WSX",
-        //        Email="marek3@cos.com"
-        //    },
-        //};
+        private ICrudUserRepository repository;
 
-        //static private int Top = 3;
-
-        private IDB repository;
-
-        public LoginController(IDB repository)
+        public LoginController(ICrudUserRepository repository)
         {
             this.repository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 0)
         {
-            return View(model: repository.Users.ToList());
+            if (page <= 0)
+                page = 0;
+            var entities = repository.GetPage(page);
+            if(entities.Count<=0)
+            {
+                page = 0;
+                entities = repository.GetPage(page);
+            }
+            ViewData["page"] = page;
+
+            return View("index", model: entities);
         }
 
         public IActionResult Add()
@@ -56,45 +39,43 @@ namespace Aplikacja.Controllers
         public IActionResult Register(User user)
         {
 
-            throw new NotImplementedException();
-            //if (ModelState.IsValid)
-            //{
-            //    Users.Add(user);
-            //    return View("Index", Users);
-            //}
-            //else
-            //{
-            //    return View("Add");
-            //}
+            if (ModelState.IsValid)
+            {
+                repository.Add(user);
+                return (this.Index());
+            }
+            else
+            {
+                return View("Add");
+            }
         }
 
         public IActionResult Remove(int id)
         {
-            throw new NotImplementedException();
-            //Users.Remove(Users.First(a => a.UserID == id));
-            //return View("Index", model: Users);
+            repository.remove(id);
+            return Index();
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            throw new NotImplementedException();
-            //return View(model: Users.First(a => a.UserID == id));
+            return View(model: repository.Find(id));
         }
 
         [HttpPost]
         public IActionResult Update(User user)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    Users[Users.IndexOf(Users.First(a => a.UserID == user.UserID))] = user;
-            //    return View("Index", Users);
-            //}
-            //else
-            //{
-            //    return View("Add");
-            //}
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                repository.Update(user);
+                return Index();
+                //ViewData["page"] = 0;
+                //return View("Index", model: repository.GetAll());
+            }
+            else
+            {
+                return View("Update");
+            }
         }
     }
 }

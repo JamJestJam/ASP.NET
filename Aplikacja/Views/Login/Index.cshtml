@@ -4,10 +4,16 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    int page = (int)ViewData["page"];
+
+    int next = page + 1;
+    int prev = page - 1;
 }
+
 
 <h1>Panel logowania</h1>
 <h3>Zaloguj się</h3>
+<h1>@ViewBag.pageNumber</h1>
 
 <h3><a class="btn btn-primary" asp-controller="Login" asp-action="Add">Zarejestruj się</a></h3>
 
@@ -36,3 +42,6 @@
         </tr>
     }
 </table>
+
+<a class="btn btn-primary" asp-controller="Login" asp-action="index" asp-route-page="@prev">Prev page</a>
+<a class="btn btn-primary" asp-controller="Login" asp-action="index" asp-route-page="@next">Next page</a>

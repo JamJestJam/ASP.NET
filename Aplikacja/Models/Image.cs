@@ -11,22 +11,29 @@ namespace Aplikacja.Models
     public class Image
     {
         [Key]
+        [Required]
         public int ImageID { get; set; }
 
-        [Required(ErrorMessage = "Musisz być zalogowany")]
-        public User Autor;
+        //public int UserID { get; set; }
+
+        //[Required(ErrorMessage = "Musisz być zalogowany")]
+        //public User Autor;
 
         [Required(ErrorMessage = "Wymagane jest Zdj.")]
         [Column(TypeName = "varBinary(max)")]
         public byte[] ImageSRC;
 
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<Rate> Rates { get; set; }
+
 
         internal static void ModelCreate(ModelBuilder builder)
         {
-            builder.Entity<Image>()
-                .HasOne(a => a.Autor)
-                .WithMany(a => a.Images);
+            //builder.Entity<Image>()
+            //    .HasOne(a => a.Autor)
+            //    .WithMany(a => a.Images)
+            //    .HasForeignKey(a=>a.UserID)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

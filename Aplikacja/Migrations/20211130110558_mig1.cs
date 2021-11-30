@@ -71,25 +71,24 @@ namespace Aplikacja.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rate",
+                name: "Rates",
                 columns: table => new
                 {
-                    UserRate = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<int>(type: "int", nullable: false),
-                    ImageID = table.Column<int>(type: "int", nullable: false)
+                    ImageID = table.Column<int>(type: "int", nullable: false),
+                    UserRate = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rate", x => x.UserRate);
+                    table.PrimaryKey("PK_Rates", x => new { x.UserID, x.ImageID });
                     table.ForeignKey(
-                        name: "FK_Rate_Images_ImageID",
+                        name: "FK_Rates_Images_ImageID",
                         column: x => x.ImageID,
                         principalTable: "Images",
                         principalColumn: "ImageID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Rate_Users_UserID",
+                        name: "FK_Rates_Users_UserID",
                         column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
@@ -126,6 +125,24 @@ namespace Aplikacja.Migrations
                 columns: new[] { "ImageID", "ImageSRC", "UserID" },
                 values: new object[] { 3, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 });
 
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "CommentID", "CommentText", "ImageID", "UserID" },
+                values: new object[,]
+                {
+                    { 1, "moje pierwsze wyssłane zdj.", 1, 1 },
+                    { 2, "Coś ty stworzył", 1, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rates",
+                columns: new[] { "ImageID", "UserID", "UserRate" },
+                values: new object[,]
+                {
+                    { 1, 2, 5 },
+                    { 1, 3, 3 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ImageID",
                 table: "Comments",
@@ -142,14 +159,9 @@ namespace Aplikacja.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rate_ImageID",
-                table: "Rate",
+                name: "IX_Rates_ImageID",
+                table: "Rates",
                 column: "ImageID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rate_UserID",
-                table: "Rate",
-                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
@@ -170,7 +182,7 @@ namespace Aplikacja.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Rate");
+                name: "Rates");
 
             migrationBuilder.DropTable(
                 name: "Images");

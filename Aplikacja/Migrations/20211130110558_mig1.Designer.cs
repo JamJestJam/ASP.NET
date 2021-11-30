@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aplikacja.Migrations
 {
     [DbContext(typeof(DB))]
-    [Migration("20211130103147_mig1")]
+    [Migration("20211130110558_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,22 @@ namespace Aplikacja.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            CommentID = 1,
+                            CommentText = "moje pierwsze wyssłane zdj.",
+                            ImageID = 1,
+                            UserID = 1
+                        },
+                        new
+                        {
+                            CommentID = 2,
+                            CommentText = "Coś ty stworzył",
+                            ImageID = 1,
+                            UserID = 2
+                        });
                 });
 
             modelBuilder.Entity("Aplikacja.Models.Image", b =>
@@ -90,24 +106,34 @@ namespace Aplikacja.Migrations
 
             modelBuilder.Entity("Aplikacja.Models.Rate", b =>
                 {
-                    b.Property<int>("UserRate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.Property<int>("ImageID")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("UserRate")
                         .HasColumnType("int");
 
-                    b.HasKey("UserRate");
+                    b.HasKey("UserID", "ImageID");
 
                     b.HasIndex("ImageID");
 
-                    b.HasIndex("UserID");
+                    b.ToTable("Rates");
 
-                    b.ToTable("Rate");
+                    b.HasData(
+                        new
+                        {
+                            UserID = 2,
+                            ImageID = 1,
+                            UserRate = 5
+                        },
+                        new
+                        {
+                            UserID = 3,
+                            ImageID = 1,
+                            UserRate = 3
+                        });
                 });
 
             modelBuilder.Entity("Aplikacja.Models.User", b =>

@@ -79,6 +79,8 @@ namespace Aplikacja.Models
 
         IList<User> GetAll();
         IList<User> GetPage(int Page, int perPage = 2);
+
+        //User AddImages();
     }
 
     public class CrudUserRepository : ICrudUserRepository

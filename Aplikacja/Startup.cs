@@ -26,8 +26,14 @@ namespace Aplikacja
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DB>(options => options.UseSqlServer(Configuration["DataBase:Connect"]));
+            //database
             services.AddTransient<IDB, Ef>();
+            //crud
             services.AddTransient<ICrudUserRepository, CrudUserRepository>();
+            services.AddTransient<ICrudImageRepository, CrudImageRepository>();
+            services.AddTransient<ICrudRateRepository, CrudRateRepository>();
+            services.AddTransient<ICrudCommentRepository, CrudCommentRepository>();
+
             services.AddControllersWithViews();
         }
 

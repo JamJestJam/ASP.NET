@@ -28,6 +28,7 @@ namespace Aplikacja.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Rate> Rates { get; set; }
 
         public DB(DbContextOptions<DB> options) : base(options) { }
 
@@ -36,6 +37,7 @@ namespace Aplikacja.Models
             User.ModelCreate(builder);
             Comment.ModelCreate(builder);
             Image.ModelCreate(builder);
+            Rate.ModelCreate(builder);
         }
     }
 }

@@ -29,8 +29,8 @@ namespace Aplikacja.Models
         public string Email { get; set; }
         public DateTime BirthDate { get; set; } = DateTime.Now;
 
-        //public ICollection<Image> Images { get; set; }
-        //public ICollection<Comment> Comments { get; set; }
+        public ICollection<Image> Images { get; set; }
+        public ICollection<Comment> Comments { get; set; }
         public ICollection<Rate> Rates { get; set; }
 
         internal static void ModelCreate(ModelBuilder builder)
@@ -42,6 +42,31 @@ namespace Aplikacja.Models
             builder.Entity<User>()
                 .HasIndex(a => a.Email)
                 .IsUnique(true);
+
+            builder.Entity<User>().HasData(
+                new User()
+                {
+                    UserID = 1,
+                    Login = "marek",
+                    Password = "zaq1@WSX",
+                    Email = "email@email.com",
+                    BirthDate = new DateTime(1998,11,25)
+                }, new User()
+                {
+                    UserID = 2,
+                    Login = "Kotek",
+                    Password = "zaq1@WSX",
+                    Email = "kotek@kotek.com",
+                    BirthDate = new DateTime(1990,10,12)
+                }, new User()
+                {
+                    UserID = 3,
+                    Login = "jaszczur",
+                    Password = "zaq1@WSX",
+                    Email = "jaszczur@zjadlkotka.com",
+                    BirthDate = new DateTime(2001,01,01)
+                }
+            );
         }
     }
 

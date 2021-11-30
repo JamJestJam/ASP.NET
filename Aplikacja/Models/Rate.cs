@@ -14,10 +14,10 @@ namespace Aplikacja.Models
         [Required]
         public int ImageID { get; set; }
 
-        //[Required]
-        //public User Autor { get; set; }
-        //[Required]
-        //public Image Image { get; set; }
+        [Required]
+        public User Autor { get; set; }
+        [Required]
+        public Image Image { get; set; }
 
         [Key]
         [Range(0, 5, ErrorMessage = "Ocena spoza zakresu")]
@@ -25,17 +25,15 @@ namespace Aplikacja.Models
 
         internal static void ModelCreate(ModelBuilder builder)
         {
-            //builder.Entity<Rate>()
-            //    .HasOne(a => a.Autor)
-            //    .WithMany(a => a.Rates)
-            //    .HasForeignKey(a => a.UserID)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Rate>()
+                .HasOne(a => a.Autor)
+                .WithMany(a => a.Rates)
+                .HasForeignKey(a => a.UserID);
 
-            //builder.Entity<Rate>()
-            //    .HasOne(a => a.Image)
-            //    .WithMany(a => a.Rates)
-            //    .HasForeignKey(a => a.ImageID)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Rate>()
+                .HasOne(a => a.Image)
+                .WithMany(a => a.Rates)
+                .HasForeignKey(a => a.ImageID);
 
             builder.Entity<Rate>()
                 .HasKey(a => new { a.UserID, a.ImageID });

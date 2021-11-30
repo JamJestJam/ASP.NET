@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aplikacja.Migrations
 {
     [DbContext(typeof(DB))]
-    [Migration("20211116124441_mig1")]
+    [Migration("20211130103147_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,12 +32,17 @@ namespace Aplikacja.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageID")
+                    b.Property<int>("ImageID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
 
                     b.HasIndex("ImageID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -49,9 +54,38 @@ namespace Aplikacja.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<byte[]>("ImageSRC")
+                        .IsRequired()
+                        .HasColumnType("varBinary(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
                     b.HasKey("ImageID");
 
+                    b.HasIndex("UserID");
+
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            ImageID = 1,
+                            ImageSRC = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            UserID = 1
+                        },
+                        new
+                        {
+                            ImageID = 2,
+                            ImageSRC = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            UserID = 1
+                        },
+                        new
+                        {
+                            ImageID = 3,
+                            ImageSRC = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            UserID = 1
+                        });
                 });
 
             modelBuilder.Entity("Aplikacja.Models.Rate", b =>
@@ -107,28 +141,81 @@ namespace Aplikacja.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1,
+                            BirthDate = new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "email@email.com",
+                            Login = "marek",
+                            Password = "zaq1@WSX"
+                        },
+                        new
+                        {
+                            UserID = 2,
+                            BirthDate = new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "kotek@kotek.com",
+                            Login = "Kotek",
+                            Password = "zaq1@WSX"
+                        },
+                        new
+                        {
+                            UserID = 3,
+                            BirthDate = new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jaszczur@zjadlkotka.com",
+                            Login = "jaszczur",
+                            Password = "zaq1@WSX"
+                        });
                 });
 
             modelBuilder.Entity("Aplikacja.Models.Comment", b =>
                 {
-                    b.HasOne("Aplikacja.Models.Image", null)
+                    b.HasOne("Aplikacja.Models.Image", "Image")
                         .WithMany("Comments")
-                        .HasForeignKey("ImageID");
+                        .HasForeignKey("ImageID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Aplikacja.Models.User", "Autor")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Autor");
+
+                    b.Navigation("Image");
+                });
+
+            modelBuilder.Entity("Aplikacja.Models.Image", b =>
+                {
+                    b.HasOne("Aplikacja.Models.User", "Autor")
+                        .WithMany("Images")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Autor");
                 });
 
             modelBuilder.Entity("Aplikacja.Models.Rate", b =>
                 {
-                    b.HasOne("Aplikacja.Models.Image", null)
+                    b.HasOne("Aplikacja.Models.Image", "Image")
                         .WithMany("Rates")
                         .HasForeignKey("ImageID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Aplikacja.Models.User", null)
+                    b.HasOne("Aplikacja.Models.User", "Autor")
                         .WithMany("Rates")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Autor");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("Aplikacja.Models.Image", b =>
@@ -140,6 +227,10 @@ namespace Aplikacja.Migrations
 
             modelBuilder.Entity("Aplikacja.Models.User", b =>
                 {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Images");
+
                     b.Navigation("Rates");
                 });
 #pragma warning restore 612, 618

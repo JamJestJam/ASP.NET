@@ -8,18 +8,6 @@ namespace Aplikacja.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    ImageID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.ImageID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -36,13 +24,34 @@ namespace Aplikacja.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    ImageID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    ImageSRC = table.Column<byte[]>(type: "varBinary(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.ImageID);
+                    table.ForeignKey(
+                        name: "FK_Images_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
                     CommentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CommentText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageID = table.Column<int>(type: "int", nullable: true)
+                    ImageID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +61,13 @@ namespace Aplikacja.Migrations
                         column: x => x.ImageID,
                         principalTable: "Images",
                         principalColumn: "ImageID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,10 +96,50 @@ namespace Aplikacja.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserID", "BirthDate", "Email", "Login", "Password" },
+                values: new object[] { 1, new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "email@email.com", "marek", "zaq1@WSX" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserID", "BirthDate", "Email", "Login", "Password" },
+                values: new object[] { 2, new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "kotek@kotek.com", "Kotek", "zaq1@WSX" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserID", "BirthDate", "Email", "Login", "Password" },
+                values: new object[] { 3, new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jaszczur@zjadlkotka.com", "jaszczur", "zaq1@WSX" });
+
+            migrationBuilder.InsertData(
+                table: "Images",
+                columns: new[] { "ImageID", "ImageSRC", "UserID" },
+                values: new object[] { 1, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Images",
+                columns: new[] { "ImageID", "ImageSRC", "UserID" },
+                values: new object[] { 2, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Images",
+                columns: new[] { "ImageID", "ImageSRC", "UserID" },
+                values: new object[] { 3, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ImageID",
                 table: "Comments",
                 column: "ImageID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserID",
+                table: "Comments",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_UserID",
+                table: "Images",
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rate_ImageID",

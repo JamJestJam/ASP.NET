@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 namespace Aplikacja.Controllers
 {
     [Authorize]
-    public class AuthorisationController : Controller
+    public class AccountController : Controller
     {
         private UserManager<IdentityUser> _userManager;
         private SignInManager<IdentityUser> _signInManager;
 
-        public AuthorisationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -44,10 +44,10 @@ namespace Aplikacja.Controllers
                 if (user != null)
                 {
                     await _signInManager.SignOutAsync();
-                    if ((await _signInManager.PasswordSignInAsync(user,
-                    loginModel.Password, false, false)).Succeeded);
+                    if ((await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded);
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Admin/Index");
+                        Console.WriteLine(123);
+                        return Redirect("/Login/");
                     }
                 }
             }

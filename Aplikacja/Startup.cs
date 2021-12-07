@@ -40,7 +40,7 @@ namespace Aplikacja
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddSession();
 
             services.AddControllersWithViews();
         }
@@ -63,7 +63,7 @@ namespace Aplikacja
 
             app.UseRouting();
 
-            //app.UseSession();
+            app.UseSession();
 
             app.UseAuthorization();
 

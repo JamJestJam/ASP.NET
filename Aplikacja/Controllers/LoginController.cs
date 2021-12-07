@@ -1,4 +1,5 @@
 ﻿using Aplikacja.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aplikacja.Controllers
 {
+    [Authorize]
     public class LoginController : Controller
     {
         private ICrudUserRepository repository;

@@ -23,6 +23,7 @@ namespace Aplikacja.Models
     {
         private const string adminUser = "Admin";
         private const string adminPassword = "Secret123$";
+
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())

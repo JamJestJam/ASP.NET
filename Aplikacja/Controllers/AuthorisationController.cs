@@ -16,6 +16,7 @@ namespace Aplikacja.Controllers
     {
         private UserManager<IdentityUser> _userManager;
         private SignInManager<IdentityUser> _signInManager;
+
         public AuthorisationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;

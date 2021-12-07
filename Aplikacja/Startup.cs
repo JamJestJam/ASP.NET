@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Aplikacja.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Aplikacja
 {
@@ -33,6 +34,13 @@ namespace Aplikacja
             services.AddTransient<ICrudImageRepository, CrudImageRepository>();
             services.AddTransient<ICrudRateRepository, CrudRateRepository>();
             services.AddTransient<ICrudCommentRepository, CrudCommentRepository>();
+            //identity
+            services.AddDbContext<AppIdentityDbContext>(options => 
+                options.UseSqlServer(Configuration["DataBase:Connect"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
 
             services.AddControllersWithViews();
         }
@@ -55,6 +63,8 @@ namespace Aplikacja
 
             app.UseRouting();
 
+            //app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -63,6 +73,8 @@ namespace Aplikacja
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

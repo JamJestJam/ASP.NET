@@ -9,6 +9,9 @@ namespace Aplikacja.Models
     public interface IDB
     {
         IQueryable<User> Users { get; }
+        IQueryable<Comment> Comments { get; }
+        IQueryable<Image> Images { get; }
+        IQueryable<Rate> Rates { get; }
     }
 
     public class Ef : IDB
@@ -21,6 +24,9 @@ namespace Aplikacja.Models
         }
 
         public IQueryable<User> Users { get => context.Users; }
+        public IQueryable<Comment> Comments { get => context.Comments; }
+        public IQueryable<Image> Images { get => context.Images; }
+        public IQueryable<Rate> Rates { get => context.Rates; }
     }
 
     public class DB : DbContext

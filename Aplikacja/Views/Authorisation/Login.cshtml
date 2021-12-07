@@ -1,0 +1,19 @@
+﻿@model Aplikacja.Models.LoginModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="All"></div>
+    <span asp-validation-for="Login"></span><br />
+    <input asp-for="Login" /><br />
+    <span asp-validation-for="Password"></span><br />
+    <input asp-for="Password" /><br />
+    <span asp-validation-for="Email"></span><br />
+    <input asp-for="Email" /><br />
+    <span asp-validation-for="BirthDate"></span><br />
+    <input asp-for="BirthDate" /><br />
+    <button type="submit">Zapisz</button>
+</form>

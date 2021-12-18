@@ -44,7 +44,7 @@ namespace Aplikacja.Controllers
                 if (user != null)
                 {
                     await _signInManager.SignOutAsync();
-                    if ((await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded);
+                    if ((await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded)
                     {
                         Console.WriteLine(123);
                         return Redirect("/Login/");

@@ -1,16 +1,21 @@
 ﻿using Aplikacja.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Principal;
+using System.Text;
+using System.Threading;
 
 namespace Aplikacja.Controllers
 {
+    [ApiController]
     [Route(template: "/api/v1/Users")]
-    public class ApiController : Controller
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public class ApiController : ControllerBase
     {
         private ICrudUserRepository rep;
 
@@ -34,6 +39,7 @@ namespace Aplikacja.Controllers
         }
 
         [HttpDelete]
+        [MyException]
         [Route(template: "{id}")]
         public ActionResult<User> Delete(int? id)
         {

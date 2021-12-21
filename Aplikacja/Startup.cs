@@ -1,16 +1,11 @@
+using Aplikacja.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Aplikacja.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 namespace Aplikacja
 {
@@ -35,7 +30,7 @@ namespace Aplikacja
             services.AddTransient<ICrudRateRepository, CrudRateRepository>();
             services.AddTransient<ICrudCommentRepository, CrudCommentRepository>();
             //identity
-            services.AddDbContext<AppIdentityDbContext>(options => 
+            services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlServer(Configuration["DataBase:Connect"]));
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()

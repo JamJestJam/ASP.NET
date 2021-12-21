@@ -1,10 +1,6 @@
 ﻿using Aplikacja.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Aplikacja.Controllers
 {
@@ -23,7 +19,7 @@ namespace Aplikacja.Controllers
             if (page <= 0)
                 page = 0;
             var entities = repository.GetPage(page);
-            if(entities.Count<=0)
+            if (entities.Count <= 0)
             {
                 page = 0;
                 entities = repository.GetPage(page);

@@ -3,9 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace Aplikacja.Models
@@ -50,21 +48,21 @@ namespace Aplikacja.Models
                     Login = "marek",
                     Password = "zaq1@WSX",
                     Email = "email@email.com",
-                    BirthDate = new DateTime(1998,11,25)
+                    BirthDate = new DateTime(1998, 11, 25)
                 }, new User()
                 {
                     UserID = 2,
                     Login = "Kotek",
                     Password = "zaq1@WSX",
                     Email = "kotek@kotek.com",
-                    BirthDate = new DateTime(1990,10,12)
+                    BirthDate = new DateTime(1990, 10, 12)
                 }, new User()
                 {
                     UserID = 3,
                     Login = "jaszczur",
                     Password = "zaq1@WSX",
                     Email = "jaszczur@zjadlkotka.com",
-                    BirthDate = new DateTime(2001,01,01)
+                    BirthDate = new DateTime(2001, 01, 01)
                 }
             );
         }

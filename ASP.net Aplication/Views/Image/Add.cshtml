@@ -1,0 +1,39 @@
+﻿@model ASP.net_Aplication.Models.ModelImage
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Add new Image</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ImageTitle" class="control-label">Tytuł</label>
+                <input asp-for="ImageTitle" class="form-control" />
+                <span asp-validation-for="ImageTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label">Obraz</label>
+                <span asp-validation-for="ImageName" class="text-danger"></span><br />
+                <input asp-for="ImageName" class="" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,34 +1,41 @@
-﻿using ASP.net_Aplication.Models;
+﻿using ASP.net_Aplication.Models.Comment;
+using ASP.net_Aplication.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Controllers {
-    [Authorize]
     public class CommentController : Controller {
-        readonly UserManager<ModelAccount> userManager;
-        readonly ICommentRep comment;
+        private readonly UserManager<DBModelAccount> userManager;
+        private readonly ICommentRep comment;
 
-        public CommentController(UserManager<ModelAccount> userManager, ICommentRep comment) {
+        public CommentController(UserManager<DBModelAccount> userManager, ICommentRep comment) {
             this.userManager = userManager;
             this.comment = comment;
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Add(Int32 id) {
-            this.ViewData["ImageID"] = id;
-            return this.View();
+            return this.View(model: new AddModelComment() {
+                ImageID = id
+            });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ModelComment model) {
-            String id = (await this.userManager.FindByNameAsync(this.User.Identity.Name)).Id;
-            model.UserID = id;
-
+        [Authorize]
+        public IActionResult Add(AddModelComment model) {
             if (this.ModelState.IsValid) {
-                comment.Add(model);
+                comment.Add(new DBModelComment() {
+                    ImageID = model.ImageID,
+                    CommentText = model.CommentText,
+                    AuthorID = userManager.GetUserId(this.User),
+                });
+
                 return this.RedirectToAction("Index", "Image", new { id = model.ImageID });
             } else {
                 return this.View();

@@ -1,4 +1,10 @@
 using ASP.net_Aplication.Models;
+using ASP.net_Aplication.Models.Comment;
+using ASP.net_Aplication.Models.Database;
+using ASP.net_Aplication.Models.Identity;
+using ASP.net_Aplication.Models.Image;
+using ASP.net_Aplication.Models.Image.EFImageRep;
+using ASP.net_Aplication.Models.Rate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -22,12 +28,12 @@ namespace ASP.net_Aplication {
             //session
             services.AddSession();
             //database
-            services.AddDbContext<DB>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
+            services.AddDbContext<DbConnect>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
             services.AddTransient<IRep, Rep>();
             //identity
             //services.AddDbContext<DB>(o => o.UseSqlServer(Configuration["DataBase:Connect"]));
-            services.AddIdentity<ModelAccount, IdentityRole>()
-                .AddEntityFrameworkStores<DB>()
+            services.AddIdentity<DBModelAccount, IdentityRole>()
+                .AddEntityFrameworkStores<DbConnect>()
                 .AddDefaultTokenProviders();
             //Authorization
             services.AddAuthorization(o => {
@@ -61,8 +67,8 @@ namespace ASP.net_Aplication {
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"));
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}"));
             IdentitySeedData.EnsurePopulated(app);
         }
     }

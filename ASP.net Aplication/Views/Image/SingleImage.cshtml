@@ -1,0 +1,65 @@
+﻿@using ASP.net_Aplication.Models.Identity;
+
+@model ASP.net_Aplication.Models.Image.SchowModelImage
+
+@{
+    const String Colored = "SelectedColor";
+    Boolean hidden = (Boolean)(ViewData["hidden"] ?? false);
+}
+
+<div class="row justify-content-center">
+    <div class="card col-9">
+        <div class="card-body">
+            <h3 class="card-title text-center">@Model.ImageTitle</h3>
+        </div>
+        <img class="card-img-bottom"
+             src="data:image;base64,@Convert.ToBase64String(Model.ImageSRC)"
+             alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text text-right">
+                <small class="text-muted">
+                    Dodany przez @Model.Author.FirstName @Model.Author.LastName
+                    @Model.CreateDate
+                </small>
+            </p>
+            @if (!hidden) {
+                <div class="row justify-content-between">
+                    <div class="row col-auto">
+                        <a asp-controller="Rate" asp-action="Like"
+                           asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                           class="align-items-center row justify-content-center col-auto">
+                            <div class="col-auto">@Model.CountRateUp</div>
+                            <div class="Mask FingerUp @if (Model.RateValueTrue) @Colored"></div>
+                        </a>
+                        <a asp-controller="Rate" asp-action="DisLike"
+                           asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                           class="align-items-center row justify-content-center col-auto">
+                            <div class="col-auto">@Model.CountRateDown</div>
+                            <div class="Mask FingerDown @if (Model.RateValueFalse) @Colored"></div>
+                        </a>
+                    </div>
+                    <div class="row col-auto justify-content-end">
+                        <div class="col-auto row">
+                            @if (Model.Author.ItsMe) {
+                                <a asp-controller="Image" asp-action="Update"
+                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   class="Mask Edit"></a>
+                                <a asp-controller="Image" asp-action="Delete"
+                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   class="Mask Delete"></a>
+                            } else if (User.IsInRole(Role.Admin.ToString())) {
+                                <div class="Mask Edit"></div>
+                                <div class="Mask Delete"></div>
+                            }
+                        </div>
+                        <a asp-controller="Image" asp-action="Index" asp-route-id="@Model.ImageID"
+                           class="row align-items-center justify-content-center ">
+                            <div class="MaskCounter col-auto">@Model.CountComment</div>
+                            <div class="Mask Comment"></div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,26 +1,29 @@
 ﻿using ASP.net_Aplication.Models;
+using ASP.net_Aplication.Models.Identity;
+using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Controllers {
     public class HomeController : Controller {
         private readonly IImageRep image;
-        private readonly UserManager<ModelAccount> userManager;
+        private readonly UserManager<DBModelAccount> userManager;
 
-        public HomeController(IImageRep image, UserManager<ModelAccount> userManager) {
+        public HomeController(IImageRep image, UserManager<DBModelAccount> userManager) {
             this.image = image;
             this.userManager = userManager;
         }
+        
+        public IActionResult Index() {
+            IEnumerable<SchowModelImage> data = 
+                image.GetPage(0, userManager.GetUserId(this.User));
 
-        public async Task<IActionResult> Index() {
-            String tmp = "";
-            try {
-                tmp = (await userManager.FindByNameAsync(this.User.Identity.Name)).Id;
-            } catch { }
-            return this.View(model: this.image.GetPage(0, tmp));
+            return this.View(model: data);
         }
 
         public IActionResult Privacy() {

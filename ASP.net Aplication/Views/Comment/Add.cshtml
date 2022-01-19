@@ -1,31 +1,23 @@
-﻿@model ASP.net_Aplication.Models.ModelComment
+﻿@model ASP.net_Aplication.Models.Comment.AddModelComment
 
 @{
     ViewData["Title"] = "Add";
 }
 
-<h1>Add</h1>
-
-<h4>ModelComment</h4>
+<br />
+<h4>Dodaj komentarz</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Add">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="ImageID" class="form-control" value="@ViewData["ImageID"]" />
-            <div class="form-group">
-                <label asp-for="CommentText" class="control-label"></label>
-                <input asp-for="CommentText" class="form-control" />
-                <span asp-validation-for="CommentText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+    <form asp-controller="Comment" asp-action="Add">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="ImageID" class="form-control" />
+        <div class="form-group">
+            <label asp-for="CommentText" class="control-label"></label>
+            <input asp-for="CommentText" class="form-control" />
+            <span asp-validation-for="CommentText" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Dodaj" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-controller="Image" asp-action="Index" asp-route-id="@ViewData["ImageID"]">Wróc do obiektu</a>
-</div>
-

@@ -1,17 +1,11 @@
-﻿using ASP.net_Aplication.Extends;
-using ASP.net_Aplication.Models.Comment;
+﻿using ASP.net_Aplication.Models.Comment;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Rate;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Image {
     public class DBModelImage {

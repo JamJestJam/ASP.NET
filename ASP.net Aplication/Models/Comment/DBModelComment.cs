@@ -1,13 +1,9 @@
 ﻿using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Comment {
     public class DBModelComment {
@@ -20,8 +16,8 @@ namespace ASP.net_Aplication.Models.Comment {
         [Column("UserID")]
         public String AuthorID { get; set; }
 
-        [MinLength(5)]
-        [Required(ErrorMessage = "niepoprawna treść")]
+        [Required(ErrorMessage = "Niepoprawna treść")]
+        [MinLength(5, ErrorMessage = "Zbyt krótki komentarz")]
         public String CommentText { get; set; }
 
         [DataType(DataType.Date)]

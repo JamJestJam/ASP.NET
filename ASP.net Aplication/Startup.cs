@@ -1,5 +1,5 @@
-using ASP.net_Aplication.Models;
 using ASP.net_Aplication.Models.Comment;
+using ASP.net_Aplication.Models.Comment.EFCommentRep;
 using ASP.net_Aplication.Models.Database;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Reflection;
 
 namespace ASP.net_Aplication {
     public class Startup {
@@ -37,14 +38,18 @@ namespace ASP.net_Aplication {
                 .AddDefaultTokenProviders();
             //Authorization
             services.AddAuthorization(o => {
-                foreach (Role r in (Role[])Enum.GetValues(typeof(Role))) {
-                    o.AddPolicy(r.ToString(), p => p.RequireRole(r.ToString()));
+                foreach (FieldInfo p in typeof(Role).GetFields()) {
+                    String role = (String)p.GetValue(null);
+                    o.AddPolicy(role, p => p.RequireRole(role));
                 }
             });
             //models
             services.AddTransient<IImageRep, EFImageRep>();
             services.AddTransient<IRateRep, EFRateRep>();
             services.AddTransient<ICommentRep, EFCommentRep>();
+
+            IImageRep.PerPage = Int32.Parse(this.Configuration["Content:ImagePerPage"]);
+            ICommentRep.PerPage = Int32.Parse(this.Configuration["Content:CommentsPerPage"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

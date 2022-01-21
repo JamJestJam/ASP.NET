@@ -1,8 +1,6 @@
 ﻿using ASP.net_Aplication.Models.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Comment {
     public class ShowModelComment {
@@ -10,15 +8,25 @@ namespace ASP.net_Aplication.Models.Comment {
             this.CommentID = model.CommentID;
             this.CommentText = model.CommentText;
             this.CreateDate = model.CreateDate;
+            this.ImageID = model.ImageID;
+
             this.Author = new ShowModelAuthor(model.Author, userID);
         }
 
+        public ShowModelComment() { }
+
+        [HiddenInput]
         public Int32 CommentID { get; set; }
+
+        [HiddenInput]
+        public Int32 ImageID { get; set; }
 
         public String CommentText { get; set; }
 
         public DateTime CreateDate { get; set; }
 
         public ShowModelAuthor Author { get; set; }
+
+        public String ReturnUrl { get; set; }
     }
 }

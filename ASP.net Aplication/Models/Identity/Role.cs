@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Identity {
-    public enum Role {
-        User,
-        Admin,
+    public static class Role {
+        public const String Admin = "Admin";
+        public const String User = "User";
     }
 }

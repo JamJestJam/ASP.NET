@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Identity {
     public class ShowModelAuthor {
@@ -10,6 +7,8 @@ namespace ASP.net_Aplication.Models.Identity {
             this.LastName = model.LastName;
             this.ItsMe = model.Id == userID;
         }
+
+        public ShowModelAuthor() { }
 
         public String FirstName { get; set; }
 

@@ -3,8 +3,6 @@ using ASP.net_Aplication.Models.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Image {
     public class SchowModelImage {
@@ -30,7 +28,7 @@ namespace ASP.net_Aplication.Models.Image {
         public Boolean RateValueFalse { get; set; }
 
         public ShowModelAuthor Author { get; set; }
-        
+
         [HiddenInput]
         public String ReturnUrl { get; set; }
 

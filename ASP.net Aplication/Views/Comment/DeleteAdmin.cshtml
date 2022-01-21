@@ -1,4 +1,4 @@
-﻿@model ASP.net_Aplication.Models.Image.SchowModelImage
+﻿@model ASP.net_Aplication.Models.Comment.ShowModelComment
 
 @{
     ViewData["Title"] = "Delete";
@@ -7,12 +7,14 @@
 <h1 class="text-center">Usuń</h1>
 
 <h3 class="text-center">Czy jesteś pewny że chcesz usunąć?</h3>
-@await Html.PartialAsync("SingleImage.cshtml", viewData: new ViewDataDictionary(ViewData) { { "hidden", true } })
+
+@await Html.PartialAsync("SingleComment.cshtml", viewData: new ViewDataDictionary(ViewData) { { "hidden", true } })
+
 <br />
 <div class="row justify-content-center">
     <form method="post" asp-action="DeleteAdmin" class="col-9">
-        <input asp-for="ImageID" />
+        <input asp-for="CommentID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" asp-route-id="@Model.ImageID">Wycofaj się</a>
+        <a asp-action="Index" asp-route-id="@Model.ReturnUrl">Wycofaj się</a>
     </form>
 </div>

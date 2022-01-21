@@ -4,10 +4,6 @@ using ASP.net_Aplication.Models.Image;
 using ASP.net_Aplication.Models.Rate;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Database {
     public class DbConnect : IdentityDbContext<DBModelAccount> {

@@ -1,16 +1,12 @@
 ﻿using ASP.net_Aplication.Models.Identity;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Image.EFImageRep {
     public partial class EFImageRep : IImageRep {
         public IEnumerable<SchowModelImage> GetPage(Int32 page, String userID = "") {
             IQueryable<SchowModelImage> tmp = db.Images
-                .Include(a => a.Rates)
-                .Include(a => a.Comments)
                 .OrderByDescending(a => a.CreateDate)
                 .Select(a => new SchowModelImage() {
                     ImageID = a.ImageID,
@@ -25,8 +21,8 @@ namespace ASP.net_Aplication.Models.Image.EFImageRep {
 
                     Author = new ShowModelAuthor(a.Author, userID)
                 })
-                .Skip(page * perPage)
-                .Take(perPage);
+                .Skip(page * IImageRep.PerPage)
+                .Take(IImageRep.PerPage);
 
             return tmp;
         }

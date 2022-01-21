@@ -40,16 +40,20 @@
                     </div>
                     <div class="row col-auto justify-content-end">
                         <div class="col-auto row">
-                            @if (Model.Author.ItsMe) {
+                            @if (User.IsInRole(Role.Admin)) {
+                                <a asp-controller="Image" asp-action="UpdateAdmin"
+                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   class="Mask Edit"></a>
+                                <a asp-controller="Image" asp-action="DeleteAdmin"
+                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   class="Mask Delete"></a>
+                            } else if (Model.Author.ItsMe) {
                                 <a asp-controller="Image" asp-action="Update"
                                    asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
                                    class="Mask Edit"></a>
                                 <a asp-controller="Image" asp-action="Delete"
                                    asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
                                    class="Mask Delete"></a>
-                            } else if (User.IsInRole(Role.Admin.ToString())) {
-                                <div class="Mask Edit"></div>
-                                <div class="Mask Delete"></div>
                             }
                         </div>
                         <a asp-controller="Image" asp-action="Index" asp-route-id="@Model.ImageID"

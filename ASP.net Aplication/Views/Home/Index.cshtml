@@ -5,6 +5,13 @@
 
 @{
     ViewData["Title"] = "View";
+    Int32 count = (Int32)ViewData["count"];
+    Int32 actual = (Int32)ViewData["actual"];
+
+    Int32 actual1 = actual - 2;
+    Int32 actual2 = actual - 1;
+    Int32 actual3 = actual + 1;
+    Int32 actual4 = actual + 2;
 }
 
 
@@ -20,3 +27,51 @@
         <br />
     }
 }
+
+<div class="row justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a asp-action="index" asp-route-page="@actual2" class="page-link">
+                    Poprzedni
+                </a>
+            </li>
+            @if (actual1 >= 0) {
+                <li class="page-item">
+                    <a asp-action="index" asp-route-page="@actual1" class="page-link">
+                        @actual1
+                    </a>
+                </li>
+            } @if (actual2 >= 0) {
+                <li class="page-item">
+                    <a asp-action="index" asp-route-page="@actual2" class="page-link">
+                        @actual2
+                    </a>
+                </li>
+            }
+            <li class="page-item disabled">
+                <a class="page-link" href="#">
+                    @actual
+                </a>
+            </li>
+            @if (actual3 <= count) {
+                <li class="page-item">
+                    <a asp-action="index" asp-route-page="@actual3" class="page-link">
+                        @actual3
+                    </a>
+                </li>
+            } @if (actual4 <= count) {
+                <li class="page-item">
+                    <a asp-action="index" asp-route-page="@actual4" class="page-link">
+                        @actual4
+                    </a>
+                </li>
+            }
+            <li class="page-item">
+                <a asp-action="index" asp-route-page="@actual3" class="page-link">
+                    Następny
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

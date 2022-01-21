@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.net_Aplication.Models.Image {
-    public class UpdateModelImage {
+namespace ASP.net_Aplication.Models.Comment {
+    public class UpdateModelComment {
         [HiddenInput]
         [Required(ErrorMessage = "Wystąpił problem proszę poczekać")]
-        public Int32 ImageID { get; set; }
+        public Int32 CommentID { get; set; }
 
-        [MinLength(5, ErrorMessage = "Zbyt krótka nazwa")]
-        [Required(ErrorMessage = "Musisz podać tytuł")]
-        public String ImageTitle { get; set; }
+        [Required(ErrorMessage = "Niepoprawna treść")]
+        [MinLength(5, ErrorMessage = "Zbyt krótki komentarz")]
+        public String CommentText { get; set; }
 
         [HiddenInput]
         public String ReturnUrl { get; set; }

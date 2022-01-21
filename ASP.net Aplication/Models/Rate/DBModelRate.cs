@@ -3,19 +3,11 @@ using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Rate {
     public class DBModelRate {
-
-        #region Data =======================================================================
-
-        #region Key ========================================================================
-
         [HiddenInput]
         [Required(ErrorMessage = "Wystąpił problem")]
         public Int32 ImageID { get; set; }
@@ -24,13 +16,9 @@ namespace ASP.net_Aplication.Models.Rate {
         [Required(ErrorMessage = "Musisz być zalogowany")]
         public String UserID { get; set; }
 
-        #endregion
-
-        [Required(ErrorMessage = "Niepoprawna ocena")]
         [DefaultValue(false)]
+        [Required(ErrorMessage = "Niepoprawna ocena")]
         public Boolean RateValue { get; set; }
-
-        #endregion
 
         public DBModelAccount User;
 

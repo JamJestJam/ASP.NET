@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace ASP.net_Aplication.Models.Identity {
     public static class IdentitySeedData {
@@ -54,7 +54,7 @@ namespace ASP.net_Aplication.Models.Identity {
             },
         };
 
-        private static async Task<Boolean> AddUser(DBModelAccount u, Role r, UserManager<DBModelAccount> userManager) {
+        private static async Task<Boolean> AddUser(DBModelAccount u, String role, UserManager<DBModelAccount> userManager) {
             DBModelAccount user = await userManager.FindByIdAsync(u.UserName);
             if (user == null) {
                 user = new DBModelAccount() {
@@ -66,7 +66,7 @@ namespace ASP.net_Aplication.Models.Identity {
                 };
 
                 await userManager.CreateAsync(user, u.PasswordHash);
-                await userManager.AddToRoleAsync(user, r.ToString());
+                await userManager.AddToRoleAsync(user, role.ToString());
                 return true;
             }
             return false;
@@ -79,9 +79,10 @@ namespace ASP.net_Aplication.Models.Identity {
             RoleManager<IdentityRole> roleManager = (RoleManager<IdentityRole>)scope
                 .ServiceProvider.GetRequiredService(typeof(RoleManager<IdentityRole>));
 
-            foreach (Role r in (Role[])Enum.GetValues(typeof(Role))) {
-                if (!await roleManager.RoleExistsAsync(r.ToString())) {
-                    await roleManager.CreateAsync(new IdentityRole(r.ToString()));
+            foreach (FieldInfo p in typeof(Role).GetFields()) {
+                String role = (String)p.GetValue(null);
+                if (!await roleManager.RoleExistsAsync(role)) {
+                    await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
 

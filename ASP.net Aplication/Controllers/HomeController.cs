@@ -6,22 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace ASP.net_Aplication.Controllers {
     public class HomeController : Controller {
-        private readonly IImageRep image;
+        private readonly IImageRep rep;
         private readonly UserManager<DBModelAccount> userManager;
 
-        public HomeController(IImageRep image, UserManager<DBModelAccount> userManager) {
-            this.image = image;
+        public HomeController(IImageRep rep, UserManager<DBModelAccount> userManager) {
+            this.rep = rep;
             this.userManager = userManager;
         }
-        
-        public IActionResult Index() {
-            IEnumerable<SchowModelImage> data = 
-                image.GetPage(0, userManager.GetUserId(this.User));
+
+        public IActionResult Index(Int32 page) {
+            Int32 count = rep.CountPages();
+            Int32 newPage = page;
+            if (page < 0)
+                newPage = count;
+            if (page > count)
+                newPage = 0;
+            if (page != newPage)
+                return this.RedirectToAction("Index", "Home", new { id = newPage });
+
+            this.ViewData["count"] = count;
+            this.ViewData["actual"] = page;
+
+            IEnumerable<SchowModelImage> data =
+                rep.GetPage(page, userManager.GetUserId(this.User));
 
             return this.View(model: data);
         }

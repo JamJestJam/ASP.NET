@@ -8,11 +8,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ASP.net_Aplication.Models.Rate {
     public class DBModelRate {
-        [HiddenInput]
         [Required(ErrorMessage = "Wystąpił problem")]
-        public Int32 ImageID { get; set; }
+        public String ImageID { get; set; }
 
-        [HiddenInput]
         [Required(ErrorMessage = "Musisz być zalogowany")]
         public String UserID { get; set; }
 

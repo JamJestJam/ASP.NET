@@ -26,7 +26,7 @@ namespace ASP.net_Aplication.Controllers {
             if (page > count)
                 newPage = 0;
             if (page != newPage)
-                return this.RedirectToAction("Index", "Home", new { id = newPage });
+                return this.RedirectToAction("Index", "Home", new { page = newPage });
 
             this.ViewData["count"] = count;
             this.ViewData["actual"] = page;

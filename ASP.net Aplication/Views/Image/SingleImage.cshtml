@@ -5,6 +5,11 @@
 @{
     const String Colored = "SelectedColor";
     Boolean hidden = (Boolean)(ViewData["hidden"] ?? false);
+    String path = string.Format("{0}://{1}{2}{3}",
+        Context.Request.Scheme,
+        Context.Request.Host,
+        Context.Request.Path,
+        Context.Request.QueryString);
 }
 
 <div class="row justify-content-center">
@@ -26,13 +31,13 @@
                 <div class="row justify-content-between">
                     <div class="row col-auto">
                         <a asp-controller="Rate" asp-action="Like"
-                           asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
                            class="align-items-center row justify-content-center col-auto">
                             <div class="col-auto">@Model.CountRateUp</div>
                             <div class="Mask FingerUp @if (Model.RateValueTrue) @Colored"></div>
                         </a>
                         <a asp-controller="Rate" asp-action="DisLike"
-                           asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                           asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
                            class="align-items-center row justify-content-center col-auto">
                             <div class="col-auto">@Model.CountRateDown</div>
                             <div class="Mask FingerDown @if (Model.RateValueFalse) @Colored"></div>
@@ -42,21 +47,21 @@
                         <div class="col-auto row">
                             @if (User.IsInRole(Role.Admin)) {
                                 <a asp-controller="Image" asp-action="UpdateAdmin"
-                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
                                    class="Mask Edit"></a>
                                 <a asp-controller="Image" asp-action="DeleteAdmin"
-                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
                                    class="Mask Delete"></a>
                             } else if (Model.Author.ItsMe) {
                                 <a asp-controller="Image" asp-action="Update"
-                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
                                    class="Mask Edit"></a>
                                 <a asp-controller="Image" asp-action="Delete"
-                                   asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path"
+                                   asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
                                    class="Mask Delete"></a>
                             }
                         </div>
-                        <a asp-controller="Image" asp-action="Index" asp-route-id="@Model.ImageID"
+                        <a asp-controller="Image" asp-action="Index" asp-route-imageID="@Model.ImageID"
                            class="row align-items-center justify-content-center ">
                             <div class="MaskCounter col-auto">@Model.CountComment</div>
                             <div class="Mask Comment"></div>

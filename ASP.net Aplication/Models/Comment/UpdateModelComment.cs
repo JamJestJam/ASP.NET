@@ -7,8 +7,9 @@ namespace ASP.net_Aplication.Models.Comment {
     public class UpdateModelComment {
         [HiddenInput]
         [Required(ErrorMessage = "Wystąpił problem proszę poczekać")]
-        public Int32 CommentID { get; set; }
+        public String CommentID { get; set; }
 
+        [Display(Name = "Treść")]
         [Required(ErrorMessage = "Niepoprawna treść")]
         [MinLength(5, ErrorMessage = "Zbyt krótki komentarz")]
         public String CommentText { get; set; }

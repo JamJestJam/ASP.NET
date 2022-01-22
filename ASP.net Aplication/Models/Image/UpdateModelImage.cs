@@ -7,10 +7,11 @@ namespace ASP.net_Aplication.Models.Image {
     public class UpdateModelImage {
         [HiddenInput]
         [Required(ErrorMessage = "Wystąpił problem proszę poczekać")]
-        public Int32 ImageID { get; set; }
+        public String ImageID { get; set; }
 
-        [MinLength(5, ErrorMessage = "Zbyt krótka nazwa")]
+        [Display(Name = "Tytuł obrazka")]
         [Required(ErrorMessage = "Musisz podać tytuł")]
+        [MinLength(5, ErrorMessage = "Zbyt krótka nazwa")]
         public String ImageTitle { get; set; }
 
         [HiddenInput]

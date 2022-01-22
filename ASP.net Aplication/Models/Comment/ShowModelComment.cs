@@ -16,10 +16,10 @@ namespace ASP.net_Aplication.Models.Comment {
         public ShowModelComment() { }
 
         [HiddenInput]
-        public Int32 CommentID { get; set; }
+        public String CommentID { get; set; }
 
         [HiddenInput]
-        public Int32 ImageID { get; set; }
+        public String ImageID { get; set; }
 
         public String CommentText { get; set; }
 

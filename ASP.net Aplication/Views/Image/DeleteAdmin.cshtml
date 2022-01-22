@@ -13,6 +13,6 @@
     <form method="post" asp-action="DeleteAdmin" class="col-9">
         <input asp-for="ImageID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" asp-route-id="@Model.ImageID">Wycofaj się</a>
+        <a asp-action="Index" asp-route-imageID="@Model.ImageID">Wycofaj się</a>
     </form>
 </div>

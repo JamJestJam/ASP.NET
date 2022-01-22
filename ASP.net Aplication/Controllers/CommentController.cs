@@ -17,9 +17,9 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize]
-        public IActionResult Add(Int32 id) {
+        public IActionResult Add(String commentID) {
             return this.View(model: new AddModelComment() {
-                ImageID = id
+                ImageID = commentID
             });
         }
 
@@ -33,7 +33,7 @@ namespace ASP.net_Aplication.Controllers {
                     AuthorID = userManager.GetUserId(this.User),
                 });
 
-                return this.RedirectToAction("Index", "Image", new { id = model.ImageID });
+                return this.RedirectToAction("Index", "Image", new { imageID = model.ImageID });
             } else {
                 return this.View();
             }
@@ -41,8 +41,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize]
-        public IActionResult Update(Int32 id, String returnUrl) {
-            UpdateModelComment data = rep.GetCommentUpdate(id, userManager.GetUserId(this.User));
+        public IActionResult Update(String commentID, String returnUrl) {
+            UpdateModelComment data = rep.GetCommentUpdate(commentID, userManager.GetUserId(this.User));
             data.ReturnUrl = returnUrl;
 
             return data.Author.ItsMe ?
@@ -66,8 +66,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize(Role.Admin)]
-        public IActionResult UpdateAdmin(Int32 id, String returnUrl) {
-            UpdateModelComment data = rep.GetCommentUpdate(id, userManager.GetUserId(this.User));
+        public IActionResult UpdateAdmin(String commentID, String returnUrl) {
+            UpdateModelComment data = rep.GetCommentUpdate(commentID, userManager.GetUserId(this.User));
             data.ReturnUrl = returnUrl;
 
             return this.View(model: data);
@@ -86,8 +86,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize]
-        public IActionResult Delete(Int32 id, String returnUrl) {
-            ShowModelComment data = rep.Get(id, userManager.GetUserId(this.User));
+        public IActionResult Delete(String commentID, String returnUrl) {
+            ShowModelComment data = rep.Get(commentID, userManager.GetUserId(this.User));
             data.ReturnUrl = returnUrl;
 
             return data.Author.ItsMe ?
@@ -97,7 +97,7 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpPost]
         [Authorize]
-        public IActionResult Delete(Int32 CommentID) {
+        public IActionResult Delete(String CommentID) {
             if (this.ModelState.IsValid) {
                 ShowModelComment data =
                     rep.Get(CommentID, userManager.GetUserId(this.User));
@@ -107,7 +107,7 @@ namespace ASP.net_Aplication.Controllers {
 
                 rep.Delete(CommentID);
 
-                return this.RedirectToAction("Index", "Image", new { id = data.ImageID });
+                return this.RedirectToAction("Index", "Image", new { imageID = data.ImageID });
             } else {
                 return this.View();
             }
@@ -115,8 +115,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize(Role.Admin)]
-        public IActionResult DeleteAdmin(Int32 id, String returnUrl) {
-            ShowModelComment data = rep.Get(id, userManager.GetUserId(this.User));
+        public IActionResult DeleteAdmin(String commentID, String returnUrl) {
+            ShowModelComment data = rep.Get(commentID, userManager.GetUserId(this.User));
             data.ReturnUrl = returnUrl;
 
             return this.View(model: data);
@@ -124,13 +124,13 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpPost]
         [Authorize(Role.Admin)]
-        public IActionResult DeleteAdmin(Int32 CommentID) {
+        public IActionResult DeleteAdmin(String CommentID) {
             if (this.ModelState.IsValid) {
                 ShowModelComment data = rep.Get(CommentID, "");
 
                 rep.Delete(CommentID);
 
-                return this.RedirectToAction("Index", "Image", new { id = data.ImageID });
+                return this.RedirectToAction("Index", "Image", new { imageID = data.ImageID });
             } else {
                 return this.View();
             }

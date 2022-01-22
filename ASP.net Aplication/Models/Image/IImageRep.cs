@@ -7,13 +7,13 @@ namespace ASP.net_Aplication.Models.Image {
 
         IEnumerable<SchowModelImage> GetPage(Int32 page, String userID);
 
-        SchowModelImage GetImage(Int32 id, String userID, Int32 page);
+        SchowModelImage GetImage(String imageID, String userID, Int32 page);
 
-        UpdateModelImage GetImageUpdate(Int32 id, String userID);
+        UpdateModelImage GetImageUpdate(String imageID, String userID);
 
         DBModelImage UpdateTitle(UpdateModelImage model);
 
-        void Delete(Int32 imageID);
+        void Delete(String imageID);
 
         Int32 CountPages();
 

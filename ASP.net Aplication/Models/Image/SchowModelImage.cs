@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace ASP.net_Aplication.Models.Image {
     public class SchowModelImage {
         [HiddenInput]
-        public Int32 ImageID { get; set; }
+        public String ImageID { get; set; }
 
         //public Boolean Yours { get; set; }
 

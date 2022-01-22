@@ -16,7 +16,7 @@
             <input asp-for="ReturnUrl" class="form-control" />
             <div class="form-group">
                 <label asp-for="CommentText" class="control-label"></label>
-                <input asp-for="CommentText" class="form-control" />
+                <textarea asp-for="CommentText" class="form-control"></textarea>
                 <span asp-validation-for="CommentText" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -27,6 +27,5 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="@Model.ReturnUrl">Back to List</a>
 </div>
-

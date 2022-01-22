@@ -11,6 +11,12 @@
     Int32 actual2 = actual - 1;
     Int32 actual3 = actual + 1;
     Int32 actual4 = actual + 2;
+
+    String path = string.Format("{0}://{1}{2}{3}",
+        Context.Request.Scheme,
+        Context.Request.Host,
+        Context.Request.Path,
+        Context.Request.QueryString);
 }
 
 @await Html.PartialAsync("SingleImage.cshtml")
@@ -18,7 +24,7 @@
 <div class="col-9" style="margin: 0 auto;">
     @if (User.Identity.IsAuthenticated) {
         @await Html.PartialAsync("../Comment/Add.cshtml", model: new AddModelComment() { ImageID = Model.ImageID })
-    } else { <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.ImageID" asp-route-returnUrl="@Context.Request.Path">Napisz komentarz</a>}
+    } else { <a asp-controller="Comment" asp-action="Add" asp-route-commentID="@Model.ImageID" asp-route-returnUrl="@path">Napisz komentarz</a>}
 </div>
 
 @foreach (ShowModelComment item in Model.Comments) {
@@ -29,19 +35,19 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a asp-action="index" asp-route-page="@actual2" asp-route-id="@Model.ImageID" class="page-link">
+                <a asp-action="index" asp-route-page="@actual2" asp-route-imageID="@Model.ImageID" class="page-link">
                     Poprzedni
                 </a>
             </li>
             @if (actual1 >= 0) {
                 <li class="page-item">
-                    <a asp-action="index" asp-route-page="@actual1" asp-route-id="@Model.ImageID" class="page-link">
+                    <a asp-action="index" asp-route-page="@actual1" asp-route-imageID="@Model.ImageID" class="page-link">
                         @actual1
                     </a>
                 </li>
             } @if (actual2 >= 0) {
                 <li class="page-item">
-                    <a asp-action="index" asp-route-page="@actual2" asp-route-id="@Model.ImageID" class="page-link">
+                    <a asp-action="index" asp-route-page="@actual2" asp-route-imageID="@Model.ImageID" class="page-link">
                         @actual2
                     </a>
                 </li>
@@ -53,19 +59,19 @@
             </li>
             @if (actual3 <= count) {
                 <li class="page-item">
-                    <a asp-action="index" asp-route-page="@actual3" asp-route-id="@Model.ImageID" class="page-link">
+                    <a asp-action="index" asp-route-page="@actual3" asp-route-imageID="@Model.ImageID" class="page-link">
                         @actual3
                     </a>
                 </li>
             } @if (actual4 <= count) {
                 <li class="page-item">
-                    <a asp-action="index" asp-route-page="@actual4" asp-route-id="@Model.ImageID" class="page-link">
+                    <a asp-action="index" asp-route-page="@actual4" asp-route-imageID="@Model.ImageID" class="page-link">
                         @actual4
                     </a>
                 </li>
             }
             <li class="page-item">
-                <a asp-action="index" asp-route-page="@actual3" asp-route-id="@Model.ImageID" class="page-link">
+                <a asp-action="index" asp-route-page="@actual3" asp-route-imageID="@Model.ImageID" class="page-link">
                     Następny
                 </a>
             </li>

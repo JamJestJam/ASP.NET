@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    String path = string.Format("{0}://{1}{2}{3}",
+        Context.Request.Scheme,
+        Context.Request.Host,
+        Context.Request.Path,
+        Context.Request.QueryString);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,15 +27,15 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1" style="justify-content: right;">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Image" asp-action="Add" asp-route-returnUrl="@Context.Request.Path">Dodaj nowy obrazek</a>
+                            <a class="nav-link text-dark" asp-controller="Image" asp-action="Add" asp-route-returnUrl="@path">Dodaj nowy obrazek</a>
                         </li>
                         @if (User.Identity.IsAuthenticated) {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Context.Request.Path">Wyloguj się <b>@User.Identity.Name</b></a>
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@path">Wyloguj się <b>@User.Identity.Name</b></a>
                             </li>
                         } else {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Zaloguj się</a>
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@path">Zaloguj się</a>
                             </li>
                         }
                     </ul>

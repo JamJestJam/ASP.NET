@@ -8,10 +8,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ASP.net_Aplication.Models.Comment {
     public class DBModelComment {
         [Key]
-        public Int32 CommentID { get; set; }
+        public String CommentID { get; set; }
 
         [Required(ErrorMessage = "Wystąpił problem")]
-        public Int32 ImageID { get; set; }
+        public String ImageID { get; set; }
 
         [Column("UserID")]
         public String AuthorID { get; set; }
@@ -29,6 +29,10 @@ namespace ASP.net_Aplication.Models.Comment {
         public DBModelImage Image;
 
         public static void ModelCreate(ModelBuilder builder) {
+            builder.Entity<DBModelComment>()
+                .Property(a => a.CommentID)
+                .HasDefaultValueSql("NEWID()");
+
             builder.Entity<DBModelComment>()
                 .HasOne(a => a.Author)
                 .WithMany(a => a.Comments)

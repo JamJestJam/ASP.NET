@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace ASP.net_Aplication.Models.Comment.EFCommentRep {
     public partial class EFCommentRep : ICommentRep {
-        public UpdateModelComment GetCommentUpdate(Int32 id, String userID) {
+        public UpdateModelComment GetCommentUpdate(String commentID, String userID) {
             UpdateModelComment tmp = this.db.Comments
-                .Where(a => a.CommentID == id)
+                .Where(a => a.CommentID == commentID)
                 .Select(a => new UpdateModelComment() {
                     CommentID = a.CommentID,
                     CommentText = a.CommentText,

@@ -20,20 +20,20 @@ namespace ASP.net_Aplication.Controllers {
             this.rep = rep;
         }
 
-        public IActionResult Index(Int32 id, Int32 page) {
-            Int32 count = repComment.Count(id);
+        public IActionResult Index(String imageID, Int32 page) {
+            Int32 count = repComment.Count(imageID);
             Int32 newPage = page;
             if (page < 0)
                 newPage = count;
             if (page > count)
                 newPage = 0;
             if (page != newPage)
-                return this.RedirectToAction("Index", "Image", new { id, page = newPage });
+                return this.RedirectToAction("Index", "Image", new { imageID, page = newPage });
 
             this.ViewData["count"] = count;
             this.ViewData["actual"] = page;
 
-            return this.View(model: this.rep.GetImage(id, userManager.GetUserId(this.User), page));
+            return this.View(model: this.rep.GetImage(imageID, userManager.GetUserId(this.User), page));
         }
 
         [HttpGet]
@@ -55,7 +55,7 @@ namespace ASP.net_Aplication.Controllers {
                     AuthorID = userManager.GetUserId(this.User)
                 });
 
-                return this.Redirect(model?.ReturnUrl ?? "/");
+                return this.Redirect("/");
             } else {
                 return this.View();
             }
@@ -63,8 +63,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize]
-        public IActionResult Update(Int32 id, String returnUrl) {
-            UpdateModelImage data = rep.GetImageUpdate(id, userManager.GetUserId(this.User));
+        public IActionResult Update(String imageID, String returnUrl) {
+            UpdateModelImage data = rep.GetImageUpdate(imageID, userManager.GetUserId(this.User));
             data.ReturnUrl = returnUrl;
 
             return data.Author.ItsMe ?
@@ -89,8 +89,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize(Role.Admin)]
-        public IActionResult UpdateAdmin(Int32 id, String retunUrl) {
-            UpdateModelImage data = rep.GetImageUpdate(id, userManager.GetUserId(this.User));
+        public IActionResult UpdateAdmin(String imageID, String retunUrl) {
+            UpdateModelImage data = rep.GetImageUpdate(imageID, userManager.GetUserId(this.User));
             data.ReturnUrl = retunUrl;
 
             return this.View(model: data);
@@ -110,8 +110,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize]
-        public IActionResult Delete(Int32 id, String returnUrl) {
-            SchowModelImage data = rep.GetImage(id, userManager.GetUserId(this.User), 0);
+        public IActionResult Delete(String imageID, String returnUrl) {
+            SchowModelImage data = rep.GetImage(imageID, userManager.GetUserId(this.User), 0);
             data.ReturnUrl = returnUrl;
 
             return data.Author.ItsMe ?
@@ -121,7 +121,7 @@ namespace ASP.net_Aplication.Controllers {
 
         [Authorize]
         [HttpPost]
-        public IActionResult Delete(Int32 ImageID) {
+        public IActionResult Delete(String ImageID) {
             if (this.ModelState.IsValid) {
                 UpdateModelImage data =
                     rep.GetImageUpdate(ImageID, userManager.GetUserId(this.User));
@@ -138,8 +138,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpGet]
         [Authorize(Role.Admin)]
-        public IActionResult DeleteAdmin(Int32 id, String returnUrl) {
-            SchowModelImage data = rep.GetImage(id, userManager.GetUserId(this.User), 0);
+        public IActionResult DeleteAdmin(String imageID, String returnUrl) {
+            SchowModelImage data = rep.GetImage(imageID, userManager.GetUserId(this.User), 0);
             data.ReturnUrl = returnUrl;
 
             return this.View(model: data);
@@ -147,7 +147,7 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpPost]
         [Authorize(Role.Admin)]
-        public IActionResult DeleteAdmin(Int32 ImageID) {
+        public IActionResult DeleteAdmin(String ImageID) {
             if (this.ModelState.IsValid) {
                 rep.Delete(ImageID);
 

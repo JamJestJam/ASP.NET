@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ASP.net_Aplication.Models.Image {
     public class DBModelImage {
         [Key]
-        public Int32 ImageID { get; set; }
+        public String ImageID { get; set; }
 
         public String AuthorID { get; set; }
 
@@ -33,6 +33,10 @@ namespace ASP.net_Aplication.Models.Image {
         public IEnumerable<DBModelComment> Comments = new List<DBModelComment>();
 
         public static void ModelCreate(ModelBuilder builder) {
+            builder.Entity<DBModelImage>()
+                .Property(a => a.ImageID)
+                .HasDefaultValueSql("NEWID()");
+
             builder.Entity<DBModelImage>()
                 .HasOne(a => a.Author)
                 .WithMany(a => a.Images)

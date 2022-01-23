@@ -8,7 +8,7 @@ namespace ASP.net_Aplication.Models.Image {
     public class AddModelImage {
         [Display(Name = "Wybierz obrazek")]
         [Required(ErrorMessage = "Wymagane jest Zdj.")]
-        [IsImageAttribute(ErrorMessage = "Wprowadzony plik nie jest zdjęciem")]
+        [IsImage(ErrorMessage = "Wprowadzony plik nie jest zdjęciem")]
         public IFormFile ImageName { get; set; }
 
         [Display(Name = "Tytuł obrazka")]

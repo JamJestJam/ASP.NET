@@ -31,7 +31,7 @@ namespace ASP.net_Aplication.Controllers {
             this.ViewData["count"] = count;
             this.ViewData["actual"] = page;
 
-            IEnumerable<SchowModelImage> data =
+            IEnumerable<ShowModelImage> data =
                 rep.GetPage(page, userManager.GetUserId(this.User));
 
             return this.View(model: data);

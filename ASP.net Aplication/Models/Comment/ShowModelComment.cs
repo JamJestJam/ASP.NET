@@ -1,6 +1,8 @@
 ﻿using ASP.net_Aplication.Models.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ASP.net_Aplication.Models.Comment {
     public class ShowModelComment {
@@ -10,23 +12,20 @@ namespace ASP.net_Aplication.Models.Comment {
             this.CreateDate = model.CreateDate;
             this.ImageID = model.ImageID;
 
+            if(model.Author != null)
             this.Author = new ShowModelAuthor(model.Author, userID);
         }
 
-        public ShowModelComment() { }
-
+        [JsonIgnore]
         [HiddenInput]
-        public String CommentID { get; set; }
-
+        public String ImageID { get; }
         [HiddenInput]
-        public String ImageID { get; set; }
+        public String CommentID { get; }
+        public String CommentText { get; }
+        public DateTime CreateDate { get; }
+        public ShowModelAuthor Author { get; }
 
-        public String CommentText { get; set; }
-
-        public DateTime CreateDate { get; set; }
-
-        public ShowModelAuthor Author { get; set; }
-
+        [JsonIgnore]
         public String ReturnUrl { get; set; }
     }
 }

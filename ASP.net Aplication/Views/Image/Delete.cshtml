@@ -1,4 +1,4 @@
-﻿@model ASP.net_Aplication.Models.Image.SchowModelImage
+﻿@model ASP.net_Aplication.Models.Image.ShowModelImage
 
 @{
     ViewData["Title"] = "Delete";
@@ -13,6 +13,6 @@
     <form method="post" asp-action="DeleteAdmin" class="col-9">
         <input asp-for="ImageID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" asp-route-imageID="@Model.ImageID">Wycofaj się</a>
+        <a href="@Model.ReturnUrl">Wycofaj się</a>
     </form>
 </div>

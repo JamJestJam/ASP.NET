@@ -1,7 +1,7 @@
 ﻿@using ASP.net_Aplication.Models.Image;
 @using ASP.net_Aplication.Models.Identity;
 
-@model IEnumerable<SchowModelImage>
+@model IEnumerable<ShowModelImage>
 
 @{
     ViewData["Title"] = "View";
@@ -22,7 +22,7 @@
 } else {
     <h1 class="text-center">Obrazki</h1>
 
-    foreach (SchowModelImage item in Model) {
+    foreach (ShowModelImage item in Model) {
         @await Html.PartialAsync("../Image/SingleImage.cshtml", model: item);
         <br />
     }

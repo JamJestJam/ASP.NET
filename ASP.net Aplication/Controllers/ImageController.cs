@@ -111,7 +111,7 @@ namespace ASP.net_Aplication.Controllers {
         [HttpGet]
         [Authorize]
         public IActionResult Delete(String imageID, String returnUrl) {
-            SchowModelImage data = rep.GetImage(imageID, userManager.GetUserId(this.User), 0);
+            ShowModelImage data = rep.GetImage(imageID, userManager.GetUserId(this.User), 0);
             data.ReturnUrl = returnUrl;
 
             return data.Author.ItsMe ?
@@ -139,7 +139,7 @@ namespace ASP.net_Aplication.Controllers {
         [HttpGet]
         [Authorize(Role.Admin)]
         public IActionResult DeleteAdmin(String imageID, String returnUrl) {
-            SchowModelImage data = rep.GetImage(imageID, userManager.GetUserId(this.User), 0);
+            ShowModelImage data = rep.GetImage(imageID, userManager.GetUserId(this.User), 0);
             data.ReturnUrl = returnUrl;
 
             return this.View(model: data);

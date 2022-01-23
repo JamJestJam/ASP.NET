@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ASP.net_Aplication.Models.Identity {
     public class ShowModelAuthor {
@@ -7,13 +9,9 @@ namespace ASP.net_Aplication.Models.Identity {
             this.LastName = model.LastName;
             this.ItsMe = model.Id == userID;
         }
-
-        public ShowModelAuthor() { }
-
-        public String FirstName { get; set; }
-
-        public String LastName { get; set; }
-
-        public Boolean ItsMe { get; set; }
+        public String FirstName { get; }
+        public String LastName { get; }
+        [JsonIgnore]
+        public Boolean ItsMe { get; }
     }
 }

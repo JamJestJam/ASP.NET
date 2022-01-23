@@ -1,3 +1,4 @@
+using ASP.net_Aplication.Extends;
 using ASP.net_Aplication.Models.Comment;
 using ASP.net_Aplication.Models.Comment.EFCommentRep;
 using ASP.net_Aplication.Models.Database;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace ASP.net_Aplication {
     public class Startup {
@@ -32,7 +34,6 @@ namespace ASP.net_Aplication {
             services.AddDbContext<DbConnect>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
             services.AddTransient<IRep, Rep>();
             //identity
-            //services.AddDbContext<DB>(o => o.UseSqlServer(Configuration["DataBase:Connect"]));
             services.AddIdentity<DBModelAccount, IdentityRole>()
                 .AddEntityFrameworkStores<DbConnect>()
                 .AddDefaultTokenProviders();
@@ -43,10 +44,15 @@ namespace ASP.net_Aplication {
                     o.AddPolicy(role, p => p.RequireRole(role));
                 }
             });
-            //models
+            //models 
             services.AddTransient<IImageRep, EFImageRep>();
             services.AddTransient<IRateRep, EFRateRep>();
             services.AddTransient<ICommentRep, EFCommentRep>();
+            //api
+            services.AddSingleton<AuthorizationApi>();
+            services.AddMvc()
+                .AddMvcOptions(o => o.Filters.AddService<AuthorizationApi>())
+                .AddJsonOptions(o => o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
 
             IImageRep.PerPage = Int32.Parse(this.Configuration["Content:ImagePerPage"]);
             ICommentRep.PerPage = Int32.Parse(this.Configuration["Content:CommentsPerPage"]);

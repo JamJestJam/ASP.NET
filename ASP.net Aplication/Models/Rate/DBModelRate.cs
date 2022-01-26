@@ -1,4 +1,5 @@
-﻿using ASP.net_Aplication.Models.Identity;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,10 @@ namespace ASP.net_Aplication.Models.Rate {
         public static void ModelCreate(ModelBuilder builder) {
             builder.Entity<DBModelRate>()
                 .HasKey(a => new { a.UserID, a.ImageID });
+
+            foreach (DBModelRate entity in StaticData.rates) {
+                builder.Entity<DBModelRate>().HasData(entity);
+            }
 
             builder.Entity<DBModelRate>()
                 .HasOne(a => a.User)

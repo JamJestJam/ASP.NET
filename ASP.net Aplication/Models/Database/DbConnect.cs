@@ -16,9 +16,10 @@ namespace ASP.net_Aplication.Models.Database {
         protected override void OnModelCreating(ModelBuilder builder) {
             base.OnModelCreating(builder);
 
-            DBModelImage.ModelCreate(builder);
             DBModelRate.ModelCreate(builder);
+            DBModelImage.ModelCreate(builder);
             DBModelComment.ModelCreate(builder);
+            DBModelAccount.ModelCreate(builder);
         }
     }
 }

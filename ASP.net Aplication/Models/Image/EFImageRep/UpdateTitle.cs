@@ -3,13 +3,13 @@
 namespace ASP.net_Aplication.Models.Image.EFImageRep {
     public partial class EFImageRep : IImageRep {
         public DBModelImage UpdateTitle(UpdateModelImage model) {
-            DBModelImage tmp = db.Images.FirstOrDefault(a => a.ImageID == model.ImageID);
-            tmp.ImageTitle = model.ImageTitle;
+            DBModelImage entity = db.Images.FirstOrDefault(a => a.ImageID == model.ImageID);
+            entity.ImageTitle = model.ImageTitle;
 
-            db.Images.Update(tmp);
+            db.Images.Update(entity);
             db.SaveChanges();
 
-            return tmp;
+            return entity;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ASP.net_Aplication.Models.Comment;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models.Comment;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Rate;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 
 namespace ASP.net_Aplication.Models.Image {
     public class DBModelImage {
@@ -36,6 +38,13 @@ namespace ASP.net_Aplication.Models.Image {
             builder.Entity<DBModelImage>()
                 .Property(a => a.ImageID)
                 .HasDefaultValueSql("NEWID()");
+
+            foreach (DBModelImage entity in StaticData.images) {
+                string path = Path.Combine(StaticData.path, $"wwwroot\\firstImg\\{entity.ImageTitle}");
+                entity.ImageSRC = File.ReadAllBytes(path);
+                
+                builder.Entity<DBModelImage>().HasData(entity);
+            }
 
             builder.Entity<DBModelImage>()
                 .HasOne(a => a.Author)

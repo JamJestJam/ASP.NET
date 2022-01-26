@@ -15,14 +15,14 @@ namespace ASP.net_Aplication.Controllers {
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> Like(String imageID, String returnUrl = "/") {
-            await this.rep.Like(imageID, userManager.GetUserId(this.User), true);
+        public IActionResult Like(String imageID, String returnUrl = "/") {
+            this.rep.Like(imageID, userManager.GetUserId(this.User), true);
 
             return this.Redirect(returnUrl);
         }
 
-        public async Task<IActionResult> DisLike(String imageID, String returnUrl = "/") {
-            await this.rep.Like(imageID, userManager.GetUserId(this.User), false);
+        public IActionResult DisLike(String imageID, String returnUrl = "/") {
+            this.rep.Like(imageID, userManager.GetUserId(this.User), false);
 
             return this.Redirect(returnUrl);
         }

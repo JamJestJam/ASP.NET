@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Models.Image {
     public interface IImageRep {
-        DBModelImage Add(DBModelImage image);
+        Task<DBModelImage> Add(AddModelImage model, String userID);
 
         IEnumerable<ShowModelImage> GetPage(Int32 page, String userID);
 

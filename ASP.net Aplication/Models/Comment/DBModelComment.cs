@@ -1,4 +1,5 @@
-﻿using ASP.net_Aplication.Models.Identity;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -32,6 +33,10 @@ namespace ASP.net_Aplication.Models.Comment {
             builder.Entity<DBModelComment>()
                 .Property(a => a.CommentID)
                 .HasDefaultValueSql("NEWID()");
+
+            foreach (DBModelComment entity in StaticData.comments) {
+                builder.Entity<DBModelComment>().HasData(entity);
+            }
 
             builder.Entity<DBModelComment>()
                 .HasOne(a => a.Author)

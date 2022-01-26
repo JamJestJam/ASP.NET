@@ -25,11 +25,9 @@ namespace ASP.net_Aplication.Controllers {
         }
 
         [HttpGet]
-        [Route("{page}")]
         public ActionResult<IEnumerable<ShowModelImage>> Read(Int32 page = 0) {
             IEnumerable<ShowModelImage> data = this.rep.GetPage(page, "");
-
-            return this.Ok(data);
+            return data.Any() ? this.NotFound() : this.Ok(data);
         }
 
         [HttpGet]
@@ -37,22 +35,15 @@ namespace ASP.net_Aplication.Controllers {
         public ActionResult<ShowModelImage> Read(String imageID, Int32 page = 0) {
             ShowModelImage data = this.rep.GetImage(imageID, "", page);
 
-            return new OkObjectResult(data);
+            return data is null ? this.NotFound() : new OkObjectResult(data);
         }
 
         [HttpPost]
         [AuthorizationToken]
-        public async Task<ActionResult<ShowModelImage>> CreateAsync([FromForm] AddModelImage model) {
-            using MemoryStream ms = new();
-            await model.ImageName.CopyToAsync(ms);
-            String id = userManager.GetUserId(this.User);
+        public async Task<ActionResult<ShowModelImage>> Create([FromForm] AddModelImage model) {
+            String userID = userManager.GetUserId(this.User);
 
-            ShowModelImage data = new(
-                rep.Add(new DBModelImage() {
-                    ImageTitle = model.ImageTitle,
-                    ImageSRC = ms.ToArray(),
-                    AuthorID = id
-                }), "");
+            ShowModelImage data = new ShowModelImage(await rep.Add(model, userID), "");
 
             return this.Created($"/api/Image/{data.ImageID}/0", data);
         }
@@ -60,10 +51,9 @@ namespace ASP.net_Aplication.Controllers {
         [HttpPut]
         [AuthorizationToken]
         public ActionResult<ShowModelImage> Update([FromForm] UpdateModelImage model) {
-            ShowModelImage data = new(
-                rep.UpdateTitle(model), "");
+            ShowModelImage data = new(rep.UpdateTitle(model), "");
 
-            return this.Ok(data);
+            return data is null ? this.NotFound() : new OkObjectResult(data);
         }
 
         [HttpDelete]
@@ -72,7 +62,7 @@ namespace ASP.net_Aplication.Controllers {
             ShowModelImage data = new(
                 rep.Delete(imageID), "");
 
-            return this.Ok(data);
+            return data is null ? this.NotFound() : new OkObjectResult(data);
         }
     }
 }

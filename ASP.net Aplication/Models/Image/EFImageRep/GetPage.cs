@@ -1,4 +1,5 @@
-﻿using ASP.net_Aplication.Models.Identity;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 namespace ASP.net_Aplication.Models.Image.EFImageRep {
     public partial class EFImageRep : IImageRep {
         public IEnumerable<ShowModelImage> GetPage(Int32 page, String userID = "") {
-            IQueryable<ShowModelImage> tmp = db.Images
+            IQueryable<ShowModelImage> entity = db.Images
                 .Include(a => a.Author)
                 .Include(a => a.Rates)
                 .Include(a => a.Comments)
@@ -16,7 +17,7 @@ namespace ASP.net_Aplication.Models.Image.EFImageRep {
                 .Skip(page * IImageRep.PerPage)
                 .Take(IImageRep.PerPage);
 
-            return tmp;
+            return entity;
         }
     }
 }

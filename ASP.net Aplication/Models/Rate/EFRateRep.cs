@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ASP.net_Aplication.Models.Rate {
     public class EFRateRep : IRateRep {
@@ -11,22 +12,22 @@ namespace ASP.net_Aplication.Models.Rate {
             this.db = db;
         }
 
-        public async Task<DBModelRate> Like(String imageID, String userID, Boolean like) {
-            DBModelRate prev = await this.db.Rates.FirstOrDefaultAsync(a => a.ImageID == imageID && a.UserID == userID);
+        public  DBModelRate Like(String imageID, String userID, Boolean like) {
+            DBModelRate entity = this.db.Rates.FirstOrDefault(a => a.ImageID == imageID && a.UserID == userID);
 
-            if (prev == null) {
-                prev = new DBModelRate() {
+            if (entity == null) {
+                entity = new DBModelRate() {
                     UserID = userID,
                     ImageID = imageID,
                     RateValue = like
                 };
-                db.Rates.Add(prev);
+                db.Rates.Add(entity);
             } else {
-                prev.RateValue = like;
-                db.Rates.Update(prev);
+                entity.RateValue = like;
+                db.Rates.Update(entity);
             }
             db.SaveChanges();
-            return prev;
+            return entity;
         }
     }
 }

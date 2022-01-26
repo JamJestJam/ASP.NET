@@ -6,7 +6,7 @@ namespace ASP.net_Aplication.Models.Image.EFImageRep {
     public partial class EFImageRep : IImageRep {
 
         public UpdateModelImage GetImageUpdate(String ImageID, String userID) {
-            UpdateModelImage tmp = this.db.Images
+            UpdateModelImage entity = this.db.Images
                 .Where(a => a.ImageID == ImageID)
                 .Select(a => new UpdateModelImage() {
                     ImageID = a.ImageID,
@@ -14,7 +14,7 @@ namespace ASP.net_Aplication.Models.Image.EFImageRep {
                     Author = new ShowModelAuthor(a.Author, userID)
                 }).FirstOrDefault();
 
-            return tmp;
+            return entity;
         }
     }
 }

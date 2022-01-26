@@ -1,4 +1,5 @@
-﻿using ASP.net_Aplication.Models.Comment;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models.Comment;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Authorization;
@@ -33,7 +34,10 @@ namespace ASP.net_Aplication.Controllers {
             this.ViewData["count"] = count;
             this.ViewData["actual"] = page;
 
-            return this.View(model: this.rep.GetImage(imageID, userManager.GetUserId(this.User), page));
+            ShowModelImage data =
+                this.rep.GetImage(imageID, userManager.GetUserId(this.User), page);
+
+            return data is null ? this.NotFound() : this.View(model: data);
         }
 
         [HttpGet]
@@ -46,14 +50,7 @@ namespace ASP.net_Aplication.Controllers {
         [Authorize]
         public async Task<IActionResult> Add(AddModelImage model) {
             if (this.ModelState.IsValid) {
-                using MemoryStream ms = new();
-                await model.ImageName.CopyToAsync(ms);
-
-                rep.Add(new DBModelImage() {
-                    ImageTitle = model.ImageTitle,
-                    ImageSRC = ms.ToArray(),
-                    AuthorID = userManager.GetUserId(this.User)
-                });
+                await rep.Add(model, userManager.GetUserId(User));
 
                 return this.Redirect("/");
             } else {

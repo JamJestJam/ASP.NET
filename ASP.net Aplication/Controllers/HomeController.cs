@@ -1,4 +1,5 @@
-﻿using ASP.net_Aplication.Models;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Identity;
@@ -33,7 +34,6 @@ namespace ASP.net_Aplication.Controllers {
 
             IEnumerable<ShowModelImage> data =
                 rep.GetPage(page, userManager.GetUserId(this.User));
-
             return this.View(model: data);
         }
 

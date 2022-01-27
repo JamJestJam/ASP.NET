@@ -2,7 +2,7 @@
 
 namespace ASP.net_Aplication.Models.Comment {
     public interface ICommentRep {
-        public DBModelComment Add(DBModelComment model);
+        public DBModelComment Add(AddModelComment model, String autorID);
 
         public ShowModelComment Get(String commentID, String userID);
 

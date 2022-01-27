@@ -1,6 +1,4 @@
-﻿using ASP.net_Aplication.Extends;
-using ASP.net_Aplication.Models.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

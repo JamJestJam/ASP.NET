@@ -3,7 +3,6 @@ using ASP.net_Aplication.Models.Rate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Controllers {
     public class RateController : Controller {

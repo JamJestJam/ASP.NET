@@ -1,7 +1,5 @@
 ﻿using ASP.net_Aplication.Models.Database;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Threading.Tasks;
 using System.Linq;
 
 namespace ASP.net_Aplication.Models.Rate {
@@ -12,7 +10,7 @@ namespace ASP.net_Aplication.Models.Rate {
             this.db = db;
         }
 
-        public  DBModelRate Like(String imageID, String userID, Boolean like) {
+        public DBModelRate Like(String imageID, String userID, Boolean like) {
             DBModelRate entity = this.db.Rates.FirstOrDefault(a => a.ImageID == imageID && a.UserID == userID);
 
             if (entity == null) {

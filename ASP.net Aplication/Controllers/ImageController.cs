@@ -1,12 +1,10 @@
-﻿using ASP.net_Aplication.Extends;
-using ASP.net_Aplication.Models.Comment;
+﻿using ASP.net_Aplication.Models.Comment;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace ASP.net_Aplication.Controllers {
@@ -50,7 +48,7 @@ namespace ASP.net_Aplication.Controllers {
         [Authorize]
         public async Task<IActionResult> Add(AddModelImage model) {
             if (this.ModelState.IsValid) {
-                await rep.Add(model, userManager.GetUserId(User));
+                await rep.Add(model, userManager.GetUserId(this.User));
 
                 return this.Redirect("/");
             } else {

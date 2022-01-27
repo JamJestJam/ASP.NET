@@ -1,7 +1,6 @@
 ﻿using ASP.net_Aplication.Models.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace ASP.net_Aplication.Models.Comment {
@@ -12,8 +11,8 @@ namespace ASP.net_Aplication.Models.Comment {
             this.CreateDate = model.CreateDate;
             this.ImageID = model.ImageID;
 
-            if(model.Author != null)
-            this.Author = new ShowModelAuthor(model.Author, userID);
+            if (model.Author != null)
+                this.Author = new ShowModelAuthor(model.Author, userID);
         }
 
         [JsonIgnore]

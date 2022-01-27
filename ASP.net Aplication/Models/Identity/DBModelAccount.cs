@@ -3,15 +3,11 @@ using ASP.net_Aplication.Models.Comment;
 using ASP.net_Aplication.Models.Image;
 using ASP.net_Aplication.Models.Rate;
 using ExpressiveAnnotations.Attributes;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
-using System.Security.Cryptography;
 
 namespace ASP.net_Aplication.Models.Identity {
     public class DBModelAccount : IdentityUser {

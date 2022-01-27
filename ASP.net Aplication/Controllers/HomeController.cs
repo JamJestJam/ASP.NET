@@ -1,5 +1,4 @@
-﻿using ASP.net_Aplication.Extends;
-using ASP.net_Aplication.Models;
+﻿using ASP.net_Aplication.Models;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
 
 namespace ASP.net_Aplication.Controllers {
     public class HomeController : Controller {

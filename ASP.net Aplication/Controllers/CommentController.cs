@@ -27,11 +27,7 @@ namespace ASP.net_Aplication.Controllers {
         [Authorize]
         public IActionResult Add(AddModelComment model) {
             if (this.ModelState.IsValid) {
-                rep.Add(new DBModelComment() {
-                    ImageID = model.ImageID,
-                    CommentText = model.CommentText,
-                    AuthorID = userManager.GetUserId(this.User),
-                });
+                rep.Add(model, userManager.GetUserId(this.User));
 
                 return this.RedirectToAction("Index", "Image", new { imageID = model.ImageID });
             } else {

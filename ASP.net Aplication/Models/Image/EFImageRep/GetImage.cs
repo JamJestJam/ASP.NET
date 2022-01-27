@@ -1,8 +1,4 @@
-﻿using ASP.net_Aplication.Controllers;
-using ASP.net_Aplication.Extends;
-using ASP.net_Aplication.Models.Comment;
-using ASP.net_Aplication.Models.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 

@@ -1,7 +1,6 @@
 ﻿using ASP.net_Aplication.Extends;
 using ASP.net_Aplication.Models.Identity;
 using ASP.net_Aplication.Models.Image;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel;

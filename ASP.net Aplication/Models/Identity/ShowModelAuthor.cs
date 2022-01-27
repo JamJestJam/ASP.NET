@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace ASP.net_Aplication.Models.Identity {

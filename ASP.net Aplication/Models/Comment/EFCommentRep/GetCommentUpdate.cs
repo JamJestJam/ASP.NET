@@ -1,5 +1,4 @@
-﻿using ASP.net_Aplication.Extends;
-using ASP.net_Aplication.Models.Identity;
+﻿using ASP.net_Aplication.Models.Identity;
 using System;
 using System.Linq;
 

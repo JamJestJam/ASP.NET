@@ -1,16 +1,12 @@
-﻿using ASP.net_Aplication.Models.Image;
-using Microsoft.AspNetCore.Http;
+﻿using ASP.net_Aplication.Extends;
+using ASP.net_Aplication.Models.Identity;
+using ASP.net_Aplication.Models.Image;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
-using System.IO;
-using Microsoft.AspNetCore.Identity;
-using ASP.net_Aplication.Models.Identity;
-using ASP.net_Aplication.Extends;
-using System.Text;
 
 namespace ASP.net_Aplication.Controllers {
     [ApiController]
@@ -43,7 +39,7 @@ namespace ASP.net_Aplication.Controllers {
         public async Task<ActionResult<ShowModelImage>> Create([FromForm] AddModelImage model) {
             String userID = userManager.GetUserId(this.User);
 
-            ShowModelImage data = new ShowModelImage(await rep.Add(model, userID), "");
+            ShowModelImage data = new(await rep.Add(model, userID), "");
 
             return this.Created($"/api/Image/{data.ImageID}/0", data);
         }

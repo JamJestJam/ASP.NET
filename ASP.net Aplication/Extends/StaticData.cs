@@ -6,7 +6,6 @@ using ASP.net_Aplication.Models.Rate;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 
 namespace ASP.net_Aplication.Extends {
@@ -202,6 +201,8 @@ namespace ASP.net_Aplication.Extends {
             context.Images.AddRange(images);
             context.Comments.AddRange(comments);
             context.Rates.AddRange(rates);
+
+            context.SaveChanges();
         }
     }
 }

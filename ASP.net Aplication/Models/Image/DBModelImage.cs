@@ -39,12 +39,8 @@ namespace ASP.net_Aplication.Models.Image {
                 .Property(a => a.ImageID)
                 .HasDefaultValueSql("NEWID()");
 
-            foreach (DBModelImage entity in StaticData.images) {
-                string path = Path.Combine(StaticData.path, $"wwwroot\\firstImg\\{entity.ImageTitle}");
-                entity.ImageSRC = File.ReadAllBytes(path);
-                
-                builder.Entity<DBModelImage>().HasData(entity);
-            }
+            builder.Entity<DBModelImage>()
+                .HasData(StaticData.images);
 
             builder.Entity<DBModelImage>()
                 .HasOne(a => a.Author)
@@ -55,6 +51,25 @@ namespace ASP.net_Aplication.Models.Image {
             builder.Entity<DBModelImage>()
                 .Property(a => a.CreateDate)
                 .HasDefaultValueSql("getdate()");
+        }
+    }
+
+    public class DBModelImageStorage {
+        public String ImageID { get; set; }
+        public String AuthorID { get; set; }
+        public String ImageTitle { get; set; }
+        public String ImageName { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.Now;
+
+        public static implicit operator DBModelImage(DBModelImageStorage model) {
+            String path = Path.Combine(StaticData.path, $"wwwroot\\firstImg\\{model.ImageName}");
+            return new DBModelImage() {
+                ImageID = model.ImageID,
+                AuthorID = model.AuthorID,
+                ImageTitle = model.ImageTitle,
+                CreateDate = model.CreateDate,
+                ImageSRC = File.ReadAllBytes(path)
+            };
         }
     }
 }

@@ -233,8 +233,8 @@ namespace ASP.net_Aplication.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1aa3f668-93fc-4f58-bba8-b09906e6f4bf", "c3d8fa2a-9e3c-4d82-9f93-8e40818a55fc", "Admin", null },
-                    { "c3cf9643-f160-4446-95a0-a56c2e3d0027", "9339d1ff-66af-4cf6-9439-180d1a056055", "User", null }
+                    { "860a20f9-3768-4832-b334-4184a18c006c", "30b9ebd8-fd3b-4dad-9842-1bb58de97760", "Admin", "ADMIN" },
+                    { "8ef9c940-acc9-4603-b6d6-8f9fa6be2800", "101e8163-68f9-4f42-bca1-08133538ea5e", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -242,11 +242,11 @@ namespace ASP.net_Aplication.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "BirthDate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "afb093f1-b21d-426a-b2e0-ecdff742b2af", 0, new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "06ba266f-e835-499f-9846-e7447040a4a7", "email@email.com", false, "Marek", "Michura", false, null, null, null, "zaq1@WSX", null, false, "a0c65582-26f9-4927-bc0e-31960b10494c", false, "Marek" },
-                    { "31a8387d-5e4d-4426-94cc-ecd0a7864f4e", 0, new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "ffee2b84-1a36-4365-a6f4-957de705b281", "Karola@email.com", false, "Karola", "Nazwisko", false, null, null, null, "zaq1@WSX", null, false, "2aa58123-2023-4166-8cc7-b3def537609f", false, "Karola" },
-                    { "b2ef884b-d7b2-4aa7-84ab-ea0415968210", 0, new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "263fda7c-c66e-4bb6-a6d0-b6adbcb6cc11", "Jaszczur@email.com", false, "Jaszczur", "Nazwisko", false, null, null, null, "zaq1@WSX", null, false, "c022aeba-1bfe-4ce9-b7ec-a703808eef23", false, "Jaszczur" },
-                    { "4dfad9aa-6017-4836-89df-aed82f655b2f", 0, new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "990f3871-de1a-4838-b442-5dc0859593e4", "admin@email.com", false, "Admin", "Admin", false, null, null, null, "zaq1@WSX", null, false, "df4390ec-e563-47e2-87a8-e403a18a65be", false, "Admin" },
-                    { "fed48f78-abac-406e-ab17-c27a27e6bbfd", 0, new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "a4d32410-fd3e-40e5-b256-077638a861ab", "admin2@email.com", false, "Admin", "Admin", false, null, null, null, "zaq1@WSX", null, false, "4a81b6ad-db34-435d-93f0-1e55ee7e63c8", false, "Admin2" }
+                    { "afb093f1-b21d-426a-b2e0-ecdff742b2af", 0, new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "2ef29fe1-85d8-4d63-a9a1-8be0c9ea0d1f", "email@email.com", false, "Marek", "Michura", false, null, "EMAIL@EMAIL.COM", "MAREK", "AQAAAAEAACcQAAAAEEH2pjdDQMivlhQ1QYE+/2b6tRcHSqK6bFgYzJJGTNyjCSkPjOB8ocoRhr4/X0O6AQ==", null, false, "00000000-0000-0000-0000-000000000000", false, "Marek" },
+                    { "31a8387d-5e4d-4426-94cc-ecd0a7864f4e", 0, new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "b97efbf6-08ac-495c-a2ff-bb6599c07455", "Karola@email.com", false, "Karola", "Nazwisko", false, null, "KAROLA@EMAIL.COM", "KAROLA", "AQAAAAEAACcQAAAAENLAxThpZFLG18QfD7iVm7rPvN4PwFqICoLU43hI0P0cTBJvk1spWXu/5MsasFGvyA==", null, false, "00000000-0000-0000-0000-000000000000", false, "Karola" },
+                    { "b2ef884b-d7b2-4aa7-84ab-ea0415968210", 0, new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "c27060cb-63a2-400d-9af4-cc9d5dcdba62", "Jaszczur@email.com", false, "Jaszczur", "Nazwisko", false, null, "JASZCZUR@EMAIL.COM", "JASZCZUR", "AQAAAAEAACcQAAAAEBw64VvhRMChHKKgB8AVXHw0GiMCqy/WITw7ErVU17xLYBWdZU+PRM+95IOaKsCs9g==", null, false, "00000000-0000-0000-0000-000000000000", false, "Jaszczur" },
+                    { "4dfad9aa-6017-4836-89df-aed82f655b2f", 0, new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "6b5b035e-e83c-47e1-97c0-e788f30e18a3", "admin@email.com", false, "Admin", "Admin", false, null, "ADMIN@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEDFgsJcn5L1IxWPltPw/lTAPuZG/2CC1+ifhVb+nlEetgD2H6vJdEG6zVO5G52YNUA==", null, false, "00000000-0000-0000-0000-000000000000", false, "Admin" },
+                    { "fed48f78-abac-406e-ab17-c27a27e6bbfd", 0, new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "2f2c2d8f-ffed-413f-baeb-15d4d8034911", "admin2@email.com", false, "Admin", "Admin", false, null, "ADMIN2@EMAIL.COM", "ADMIN2", "AQAAAAEAACcQAAAAEB04WsnDXtnKxjuUI9hzyN6wTRLxWl9c8xQ6qPulUeOuSqEwq2MZU38cVp3i6hcRwA==", null, false, "00000000-0000-0000-0000-000000000000", false, "Admin2" }
                 });
 
             migrationBuilder.InsertData(
@@ -254,11 +254,11 @@ namespace ASP.net_Aplication.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "1aa3f668-93fc-4f58-bba8-b09906e6f4bf", "4dfad9aa-6017-4836-89df-aed82f655b2f" },
-                    { "1aa3f668-93fc-4f58-bba8-b09906e6f4bf", "fed48f78-abac-406e-ab17-c27a27e6bbfd" },
-                    { "c3cf9643-f160-4446-95a0-a56c2e3d0027", "afb093f1-b21d-426a-b2e0-ecdff742b2af" },
-                    { "c3cf9643-f160-4446-95a0-a56c2e3d0027", "31a8387d-5e4d-4426-94cc-ecd0a7864f4e" },
-                    { "c3cf9643-f160-4446-95a0-a56c2e3d0027", "b2ef884b-d7b2-4aa7-84ab-ea0415968210" }
+                    { "860a20f9-3768-4832-b334-4184a18c006c", "afb093f1-b21d-426a-b2e0-ecdff742b2af" },
+                    { "860a20f9-3768-4832-b334-4184a18c006c", "31a8387d-5e4d-4426-94cc-ecd0a7864f4e" },
+                    { "860a20f9-3768-4832-b334-4184a18c006c", "b2ef884b-d7b2-4aa7-84ab-ea0415968210" },
+                    { "860a20f9-3768-4832-b334-4184a18c006c", "4dfad9aa-6017-4836-89df-aed82f655b2f" },
+                    { "860a20f9-3768-4832-b334-4184a18c006c", "fed48f78-abac-406e-ab17-c27a27e6bbfd" }
                 });
 
             migrationBuilder.InsertData(
@@ -276,11 +276,11 @@ namespace ASP.net_Aplication.Migrations
                 columns: new[] { "CommentID", "UserID", "CommentText", "CreateDate", "ImageID" },
                 values: new object[,]
                 {
-                    { "2234f04d-f176-401f-8d2a-66882e0c9770", "afb093f1-b21d-426a-b2e0-ecdff742b2af", "Komentarz 1", new DateTime(2022, 1, 26, 14, 13, 33, 868, DateTimeKind.Local).AddTicks(9129), "cda493c5-f7d1-4968-a2df-0c2162240fa0" },
-                    { "0661026b-03d1-4e98-a84d-f4ceadcdb265", "b2ef884b-d7b2-4aa7-84ab-ea0415968210", "Komentarz 2", new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(368), "02783261-ca59-432a-affd-de35e5c2b7d1" },
-                    { "146be234-dc45-4f2f-80d1-d01c18e6c679", "4dfad9aa-6017-4836-89df-aed82f655b2f", "Komentarz 3", new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(379), "1a7b0d03-caed-4de5-ab58-98769049c166" },
-                    { "56f71278-7844-4dd9-9939-5f6e79887b0c", "fed48f78-abac-406e-ab17-c27a27e6bbfd", "Komentarz 4", new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(388), "1a7b0d03-caed-4de5-ab58-98769049c166" },
-                    { "78bfce5e-83f6-4b30-ab45-eed81fea6679", "31a8387d-5e4d-4426-94cc-ecd0a7864f4e", "Komentarz 5", new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(397), "1a7b0d03-caed-4de5-ab58-98769049c166" }
+                    { "2234f04d-f176-401f-8d2a-66882e0c9770", "afb093f1-b21d-426a-b2e0-ecdff742b2af", "Komentarz 1", new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(7568), "cda493c5-f7d1-4968-a2df-0c2162240fa0" },
+                    { "0661026b-03d1-4e98-a84d-f4ceadcdb265", "b2ef884b-d7b2-4aa7-84ab-ea0415968210", "Komentarz 2", new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8800), "02783261-ca59-432a-affd-de35e5c2b7d1" },
+                    { "146be234-dc45-4f2f-80d1-d01c18e6c679", "4dfad9aa-6017-4836-89df-aed82f655b2f", "Komentarz 3", new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8813), "1a7b0d03-caed-4de5-ab58-98769049c166" },
+                    { "56f71278-7844-4dd9-9939-5f6e79887b0c", "fed48f78-abac-406e-ab17-c27a27e6bbfd", "Komentarz 4", new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8822), "1a7b0d03-caed-4de5-ab58-98769049c166" },
+                    { "78bfce5e-83f6-4b30-ab45-eed81fea6679", "31a8387d-5e4d-4426-94cc-ecd0a7864f4e", "Komentarz 5", new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8832), "1a7b0d03-caed-4de5-ab58-98769049c166" }
                 });
 
             migrationBuilder.InsertData(
@@ -288,11 +288,11 @@ namespace ASP.net_Aplication.Migrations
                 columns: new[] { "ImageID", "UserID", "RateValue" },
                 values: new object[,]
                 {
-                    { "1a7b0d03-caed-4de5-ab58-98769049c166", "afb093f1-b21d-426a-b2e0-ecdff742b2af", true },
-                    { "1a7b0d03-caed-4de5-ab58-98769049c166", "31a8387d-5e4d-4426-94cc-ecd0a7864f4e", true },
-                    { "1a7b0d03-caed-4de5-ab58-98769049c166", "b2ef884b-d7b2-4aa7-84ab-ea0415968210", true },
-                    { "1a7b0d03-caed-4de5-ab58-98769049c166", "4dfad9aa-6017-4836-89df-aed82f655b2f", false },
-                    { "1a7b0d03-caed-4de5-ab58-98769049c166", "fed48f78-abac-406e-ab17-c27a27e6bbfd", false }
+                    { "cda493c5-f7d1-4968-a2df-0c2162240fa0", "afb093f1-b21d-426a-b2e0-ecdff742b2af", true },
+                    { "cda493c5-f7d1-4968-a2df-0c2162240fa0", "31a8387d-5e4d-4426-94cc-ecd0a7864f4e", true },
+                    { "cda493c5-f7d1-4968-a2df-0c2162240fa0", "b2ef884b-d7b2-4aa7-84ab-ea0415968210", true },
+                    { "cda493c5-f7d1-4968-a2df-0c2162240fa0", "4dfad9aa-6017-4836-89df-aed82f655b2f", false },
+                    { "cda493c5-f7d1-4968-a2df-0c2162240fa0", "fed48f78-abac-406e-ab17-c27a27e6bbfd", false }
                 });
 
             migrationBuilder.CreateIndex(

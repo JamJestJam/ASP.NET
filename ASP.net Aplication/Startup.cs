@@ -30,8 +30,17 @@ namespace ASP.net_Aplication {
             services.AddControllersWithViews();
             //session
             services.AddSession();
+            //api
+            services.AddSingleton<AuthorizationApi>();
+            services.AddMvc()
+                .AddMvcOptions(o => o.Filters.AddService<AuthorizationApi>())
+                .AddJsonOptions(o => o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
             //database
-            services.AddDbContext<DbConnect>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
+            if (UnitTestDetector.IsRunningFromNUnit) {
+                services.AddDbContext<DbConnect>(opt => opt.UseInMemoryDatabase(new Guid().ToString()));
+            } else {
+                services.AddDbContext<DbConnect>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
+            }
             services.AddTransient<IRep, Rep>();
             //identity
             services.AddIdentity<DBModelAccount, IdentityRole>()
@@ -48,11 +57,7 @@ namespace ASP.net_Aplication {
             services.AddTransient<IImageRep, EFImageRep>();
             services.AddTransient<IRateRep, EFRateRep>();
             services.AddTransient<ICommentRep, EFCommentRep>();
-            //api
-            services.AddSingleton<AuthorizationApi>();
-            services.AddMvc()
-                .AddMvcOptions(o => o.Filters.AddService<AuthorizationApi>())
-                .AddJsonOptions(o => o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+            
 
             IImageRep.PerPage = Int32.Parse(this.Configuration["Content:ImagePerPage"]);
             ICommentRep.PerPage = Int32.Parse(this.Configuration["Content:CommentsPerPage"]);
@@ -82,6 +87,11 @@ namespace ASP.net_Aplication {
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}")
             );
+
+            if (UnitTestDetector.IsRunningFromNUnit) {
+                DbConnect context = app.ApplicationServices.GetService<DbConnect>();
+                StaticData.SeedData(context);
+            }
         }
     }
 }

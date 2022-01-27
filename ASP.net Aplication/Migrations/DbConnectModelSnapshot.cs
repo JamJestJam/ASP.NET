@@ -57,7 +57,7 @@ namespace ASP.net_Aplication.Migrations
                             CommentID = "2234f04d-f176-401f-8d2a-66882e0c9770",
                             AuthorID = "afb093f1-b21d-426a-b2e0-ecdff742b2af",
                             CommentText = "Komentarz 1",
-                            CreateDate = new DateTime(2022, 1, 26, 14, 13, 33, 868, DateTimeKind.Local).AddTicks(9129),
+                            CreateDate = new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(7568),
                             ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0"
                         },
                         new
@@ -65,7 +65,7 @@ namespace ASP.net_Aplication.Migrations
                             CommentID = "0661026b-03d1-4e98-a84d-f4ceadcdb265",
                             AuthorID = "b2ef884b-d7b2-4aa7-84ab-ea0415968210",
                             CommentText = "Komentarz 2",
-                            CreateDate = new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(368),
+                            CreateDate = new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8800),
                             ImageID = "02783261-ca59-432a-affd-de35e5c2b7d1"
                         },
                         new
@@ -73,7 +73,7 @@ namespace ASP.net_Aplication.Migrations
                             CommentID = "146be234-dc45-4f2f-80d1-d01c18e6c679",
                             AuthorID = "4dfad9aa-6017-4836-89df-aed82f655b2f",
                             CommentText = "Komentarz 3",
-                            CreateDate = new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(379),
+                            CreateDate = new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8813),
                             ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166"
                         },
                         new
@@ -81,7 +81,7 @@ namespace ASP.net_Aplication.Migrations
                             CommentID = "56f71278-7844-4dd9-9939-5f6e79887b0c",
                             AuthorID = "fed48f78-abac-406e-ab17-c27a27e6bbfd",
                             CommentText = "Komentarz 4",
-                            CreateDate = new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(388),
+                            CreateDate = new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8822),
                             ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166"
                         },
                         new
@@ -89,7 +89,7 @@ namespace ASP.net_Aplication.Migrations
                             CommentID = "78bfce5e-83f6-4b30-ab45-eed81fea6679",
                             AuthorID = "31a8387d-5e4d-4426-94cc-ecd0a7864f4e",
                             CommentText = "Komentarz 5",
-                            CreateDate = new DateTime(2022, 1, 26, 14, 13, 33, 869, DateTimeKind.Local).AddTicks(397),
+                            CreateDate = new DateTime(2022, 1, 27, 14, 5, 59, 208, DateTimeKind.Local).AddTicks(8832),
                             ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166"
                         });
                 });
@@ -175,15 +175,17 @@ namespace ASP.net_Aplication.Migrations
                             Id = "afb093f1-b21d-426a-b2e0-ecdff742b2af",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "06ba266f-e835-499f-9846-e7447040a4a7",
+                            ConcurrencyStamp = "2ef29fe1-85d8-4d63-a9a1-8be0c9ea0d1f",
                             Email = "email@email.com",
                             EmailConfirmed = false,
                             FirstName = "Marek",
                             LastName = "Michura",
                             LockoutEnabled = false,
-                            PasswordHash = "zaq1@WSX",
+                            NormalizedEmail = "EMAIL@EMAIL.COM",
+                            NormalizedUserName = "MAREK",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEH2pjdDQMivlhQ1QYE+/2b6tRcHSqK6bFgYzJJGTNyjCSkPjOB8ocoRhr4/X0O6AQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a0c65582-26f9-4927-bc0e-31960b10494c",
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "Marek"
                         },
@@ -192,15 +194,17 @@ namespace ASP.net_Aplication.Migrations
                             Id = "31a8387d-5e4d-4426-94cc-ecd0a7864f4e",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "ffee2b84-1a36-4365-a6f4-957de705b281",
+                            ConcurrencyStamp = "b97efbf6-08ac-495c-a2ff-bb6599c07455",
                             Email = "Karola@email.com",
                             EmailConfirmed = false,
                             FirstName = "Karola",
                             LastName = "Nazwisko",
                             LockoutEnabled = false,
-                            PasswordHash = "zaq1@WSX",
+                            NormalizedEmail = "KAROLA@EMAIL.COM",
+                            NormalizedUserName = "KAROLA",
+                            PasswordHash = "AQAAAAEAACcQAAAAENLAxThpZFLG18QfD7iVm7rPvN4PwFqICoLU43hI0P0cTBJvk1spWXu/5MsasFGvyA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2aa58123-2023-4166-8cc7-b3def537609f",
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "Karola"
                         },
@@ -209,15 +213,17 @@ namespace ASP.net_Aplication.Migrations
                             Id = "b2ef884b-d7b2-4aa7-84ab-ea0415968210",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "263fda7c-c66e-4bb6-a6d0-b6adbcb6cc11",
+                            ConcurrencyStamp = "c27060cb-63a2-400d-9af4-cc9d5dcdba62",
                             Email = "Jaszczur@email.com",
                             EmailConfirmed = false,
                             FirstName = "Jaszczur",
                             LastName = "Nazwisko",
                             LockoutEnabled = false,
-                            PasswordHash = "zaq1@WSX",
+                            NormalizedEmail = "JASZCZUR@EMAIL.COM",
+                            NormalizedUserName = "JASZCZUR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBw64VvhRMChHKKgB8AVXHw0GiMCqy/WITw7ErVU17xLYBWdZU+PRM+95IOaKsCs9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c022aeba-1bfe-4ce9-b7ec-a703808eef23",
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "Jaszczur"
                         },
@@ -226,15 +232,17 @@ namespace ASP.net_Aplication.Migrations
                             Id = "4dfad9aa-6017-4836-89df-aed82f655b2f",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1998, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "990f3871-de1a-4838-b442-5dc0859593e4",
+                            ConcurrencyStamp = "6b5b035e-e83c-47e1-97c0-e788f30e18a3",
                             Email = "admin@email.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
                             LastName = "Admin",
                             LockoutEnabled = false,
-                            PasswordHash = "zaq1@WSX",
+                            NormalizedEmail = "ADMIN@EMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDFgsJcn5L1IxWPltPw/lTAPuZG/2CC1+ifhVb+nlEetgD2H6vJdEG6zVO5G52YNUA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "df4390ec-e563-47e2-87a8-e403a18a65be",
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -243,15 +251,17 @@ namespace ASP.net_Aplication.Migrations
                             Id = "fed48f78-abac-406e-ab17-c27a27e6bbfd",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1990, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "a4d32410-fd3e-40e5-b256-077638a861ab",
+                            ConcurrencyStamp = "2f2c2d8f-ffed-413f-baeb-15d4d8034911",
                             Email = "admin2@email.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
                             LastName = "Admin",
                             LockoutEnabled = false,
-                            PasswordHash = "zaq1@WSX",
+                            NormalizedEmail = "ADMIN2@EMAIL.COM",
+                            NormalizedUserName = "ADMIN2",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB04WsnDXtnKxjuUI9hzyN6wTRLxWl9c8xQ6qPulUeOuSqEwq2MZU38cVp3i6hcRwA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4a81b6ad-db34-435d-93f0-1e55ee7e63c8",
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "Admin2"
                         });
@@ -334,31 +344,31 @@ namespace ASP.net_Aplication.Migrations
                         new
                         {
                             UserID = "afb093f1-b21d-426a-b2e0-ecdff742b2af",
-                            ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166",
+                            ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0",
                             RateValue = true
                         },
                         new
                         {
                             UserID = "31a8387d-5e4d-4426-94cc-ecd0a7864f4e",
-                            ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166",
+                            ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0",
                             RateValue = true
                         },
                         new
                         {
                             UserID = "b2ef884b-d7b2-4aa7-84ab-ea0415968210",
-                            ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166",
+                            ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0",
                             RateValue = true
                         },
                         new
                         {
                             UserID = "4dfad9aa-6017-4836-89df-aed82f655b2f",
-                            ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166",
+                            ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0",
                             RateValue = false
                         },
                         new
                         {
                             UserID = "fed48f78-abac-406e-ab17-c27a27e6bbfd",
-                            ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166",
+                            ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0",
                             RateValue = false
                         });
                 });
@@ -392,15 +402,17 @@ namespace ASP.net_Aplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1aa3f668-93fc-4f58-bba8-b09906e6f4bf",
-                            ConcurrencyStamp = "c3d8fa2a-9e3c-4d82-9f93-8e40818a55fc",
-                            Name = "Admin"
+                            Id = "860a20f9-3768-4832-b334-4184a18c006c",
+                            ConcurrencyStamp = "30b9ebd8-fd3b-4dad-9842-1bb58de97760",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c3cf9643-f160-4446-95a0-a56c2e3d0027",
-                            ConcurrencyStamp = "9339d1ff-66af-4cf6-9439-180d1a056055",
-                            Name = "User"
+                            Id = "8ef9c940-acc9-4603-b6d6-8f9fa6be2800",
+                            ConcurrencyStamp = "101e8163-68f9-4f42-bca1-08133538ea5e",
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 
@@ -492,27 +504,27 @@ namespace ASP.net_Aplication.Migrations
                         new
                         {
                             UserId = "afb093f1-b21d-426a-b2e0-ecdff742b2af",
-                            RoleId = "c3cf9643-f160-4446-95a0-a56c2e3d0027"
+                            RoleId = "860a20f9-3768-4832-b334-4184a18c006c"
                         },
                         new
                         {
                             UserId = "31a8387d-5e4d-4426-94cc-ecd0a7864f4e",
-                            RoleId = "c3cf9643-f160-4446-95a0-a56c2e3d0027"
+                            RoleId = "860a20f9-3768-4832-b334-4184a18c006c"
                         },
                         new
                         {
                             UserId = "b2ef884b-d7b2-4aa7-84ab-ea0415968210",
-                            RoleId = "c3cf9643-f160-4446-95a0-a56c2e3d0027"
+                            RoleId = "860a20f9-3768-4832-b334-4184a18c006c"
                         },
                         new
                         {
                             UserId = "4dfad9aa-6017-4836-89df-aed82f655b2f",
-                            RoleId = "1aa3f668-93fc-4f58-bba8-b09906e6f4bf"
+                            RoleId = "860a20f9-3768-4832-b334-4184a18c006c"
                         },
                         new
                         {
                             UserId = "fed48f78-abac-406e-ab17-c27a27e6bbfd",
-                            RoleId = "1aa3f668-93fc-4f58-bba8-b09906e6f4bf"
+                            RoleId = "860a20f9-3768-4832-b334-4184a18c006c"
                         });
                 });
 

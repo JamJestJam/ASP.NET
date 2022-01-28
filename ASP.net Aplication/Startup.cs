@@ -58,9 +58,8 @@ namespace ASP.net_Aplication {
             services.AddTransient<IRateRep, EFRateRep>();
             services.AddTransient<ICommentRep, EFCommentRep>();
 
-
-            IImageRep.PerPage = 2;/*Int32.Parse(this.Configuration["Content:ImagePerPage"]);*/
-            ICommentRep.PerPage = 2;/*Int32.Parse(this.Configuration["Content:CommentsPerPage"]);*/
+            IImageRep.PerPage = Int32.Parse(this.Configuration["Content:ImagePerPage"]);
+            ICommentRep.PerPage = Int32.Parse(this.Configuration["Content:CommentsPerPage"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,7 +12,7 @@ namespace ASP.net_Aplication_Test {
         [Fact]
         public void AddImage() {
             using SeleniumServerFactory<Startup> server = new("AddImage");
-            using ChromeDriver browser = new("AddImage");
+            using ChromeDriver browser = new();
             browser.Navigate().GoToUrl(server.BaseAddress);
 
             browser.FindElement(By.XPath(".//*[@id='AddImage']")).Click();
@@ -30,7 +30,7 @@ namespace ASP.net_Aplication_Test {
         [Fact]
         public void UpdateImageTitle() {
             using SeleniumServerFactory<Startup> server = new("UpdateImageTitle");
-            using ChromeDriver browser = new("UpdateImageTitle");
+            using ChromeDriver browser = new();
             browser.Navigate().GoToUrl($"{server.BaseAddress}Image?imageID={StaticData.images[0].ImageID}");
 
             browser.FindElement(By.XPath(".//*[@id='LoginIn']")).Click();
@@ -47,7 +47,7 @@ namespace ASP.net_Aplication_Test {
         [Fact]
         public void DeleteImage() {
             using SeleniumServerFactory<Startup> server = new("DeleteImage");
-            using ChromeDriver browser = new("DeleteImage");
+            using ChromeDriver browser = new();
             browser.Navigate().GoToUrl($"{server.BaseAddress}Image?imageID={StaticData.images[0].ImageID}");
 
             browser.FindElement(By.XPath(".//*[@id='LoginIn']")).Click();

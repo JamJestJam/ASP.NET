@@ -10,7 +10,7 @@ namespace ASP.net_Aplication.Models.Image.EFImageRep {
 
             DBModelImage entity = this.db.Images
                 .Add(new DBModelImage() {
-                    ImageID = new Guid().ToString(),
+                    ImageID = Guid.NewGuid().ToString(),
                     ImageTitle = model.ImageTitle,
                     ImageSRC = ms.ToArray(),
                     AuthorID = userID

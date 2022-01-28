@@ -12,10 +12,10 @@
         Context.Request.QueryString);
 }
 
-<div class="row justify-content-center">
+<div class="SingleImage row justify-content-center">
     <div class="card col-9">
         <div class="card-body">
-            <h3 class="card-title text-center">@Model.ImageTitle</h3>
+            <h3 class="card-title text-center ImageTitle">@Model.ImageTitle</h3>
         </div>
         <img class="card-img-bottom"
              src="data:image;base64,@Convert.ToBase64String(Model.ImageSRC)"
@@ -48,17 +48,17 @@
                             @if (User.IsInRole(Role.Admin)) {
                                 <a asp-controller="Image" asp-action="UpdateAdmin"
                                    asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
-                                   class="Mask Edit"></a>
+                                   class="Mask Image Edit"></a>
                                 <a asp-controller="Image" asp-action="DeleteAdmin"
                                    asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
-                                   class="Mask Delete"></a>
+                                   class="Mask Image Delete"></a>
                             } else if (Model.Author.ItsMe) {
                                 <a asp-controller="Image" asp-action="Update"
                                    asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
-                                   class="Mask Edit"></a>
+                                   class="Mask Image Edit"></a>
                                 <a asp-controller="Image" asp-action="Delete"
                                    asp-route-imageID="@Model.ImageID" asp-route-returnUrl="@path"
-                                   class="Mask Delete"></a>
+                                   class="Mask Image Delete"></a>
                             }
                         </div>
                         <a asp-controller="Image" asp-action="Index" asp-route-imageID="@Model.ImageID"

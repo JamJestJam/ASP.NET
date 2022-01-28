@@ -69,7 +69,6 @@ namespace ASP.net_Aplication.Controllers {
                 foreach (IdentityError error in newUser.Errors)
                     this.ModelState.AddModelError(error.Code, error.Description);
 
-                this.ModelState.AddModelError("Error", "Nie udało się zarejestrować");
             }
 
             return this.View(model);

@@ -21,9 +21,10 @@ namespace ASP.net_Aplication.Controllers {
         }
 
         [HttpGet]
+        [Route("{page}")]
         public ActionResult<IEnumerable<ShowModelImage>> Read(Int32 page = 0) {
             IEnumerable<ShowModelImage> data = this.rep.GetPage(page, "");
-            return data.Any() ? this.NotFound() : this.Ok(data);
+            return !data.Any() ? this.NotFound() : this.Ok(data);
         }
 
         [HttpGet]
@@ -36,7 +37,7 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpPost]
         [AuthorizationToken]
-        public async Task<ActionResult<ShowModelImage>> Create([FromForm] AddModelImage model) {
+        public async Task<ActionResult<ShowModelImage>> Create([FromForm]AddModelImage model) {
             String userID = userManager.GetUserId(this.User);
 
             ShowModelImage data = new(await rep.Add(model, userID), "");
@@ -46,7 +47,7 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpPut]
         [AuthorizationToken]
-        public ActionResult<ShowModelImage> Update([FromForm] UpdateModelImage model) {
+        public ActionResult<ShowModelImage> Update(UpdateModelImage model) {
             ShowModelImage data = new(rep.UpdateTitle(model), "");
 
             return data is null ? this.NotFound() : new OkObjectResult(data);
@@ -54,7 +55,8 @@ namespace ASP.net_Aplication.Controllers {
 
         [HttpDelete]
         [AuthorizationToken]
-        public ActionResult Delete([FromForm] String imageID) {
+        [Route("{imageID}")]
+        public ActionResult Delete(String imageID) {
             ShowModelImage data = new(
                 rep.Delete(imageID), "");
 

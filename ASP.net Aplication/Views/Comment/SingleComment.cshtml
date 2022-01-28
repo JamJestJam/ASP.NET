@@ -11,7 +11,7 @@
         Context.Request.QueryString);
 }
 
-<div class="col-9 card" style="margin: 0 auto;">
+<div class="col-9 card Commentt" style="margin: 0 auto;">
     <div class="card-body row justify-content-between" style="padding-bottom: 0;">
         <div><h4>@Model.Author.FirstName @Model.Author.LastName</h4></div>
         <div class="row col-auto align-items-center">
@@ -20,23 +20,23 @@
                 if (User.IsInRole(Role.Admin)) {
                     <a asp-controller="Comment" asp-action="UpdateAdmin"
                        asp-route-commentID="@Model.CommentID" asp-route-returnUrl="@path"
-                       class="Mask Edit"></a>
+                       class="Mask Commentt Edit"></a>
                     <a asp-controller="Comment" asp-action="DeleteAdmin"
                        asp-route-commentID="@Model.CommentID" asp-route-returnUrl="@path"
-                       class="Mask Delete"></a>
+                       class="Mask Commentt Delete"></a>
                 } else if (Model.Author.ItsMe) {
                     <a asp-controller="Comment" asp-action="Update"
                        asp-route-commentID="@Model.CommentID" asp-route-returnUrl="@path"
-                       class="Mask Edit"></a>
+                       class="Mask Commentt Edit"></a>
                     <a asp-controller="Comment" asp-action="Delete"
                        asp-route-commentID="@Model.CommentID" asp-route-returnUrl="@path"
-                       class="Mask Delete"></a>
+                       class="Mask Commentt Delete"></a>
                 }
             }
         </div>
     </div>
     <hr />
-    <div class="card-body" style="padding-top: 0;">
+    <div class="card-body CommentText" style="padding-top: 0;">
         @Model.CommentText
     </div>
 </div>

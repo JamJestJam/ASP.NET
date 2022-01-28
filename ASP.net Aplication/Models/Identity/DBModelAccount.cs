@@ -59,7 +59,7 @@ namespace ASP.net_Aplication.Models.Identity {
 
                 NormalizedUserName = model.UserName.ToUpper(),
                 NormalizedEmail = model.Email.ToUpper(),
-                SecurityStamp = new Guid().ToString("D"),
+                SecurityStamp =  Guid.NewGuid().ToString(),
             };
 
             user.PasswordHash = passHash.HashPassword(user, model.Password);

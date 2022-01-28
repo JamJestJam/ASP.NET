@@ -5,7 +5,7 @@ namespace ASP.net_Aplication.Models.Comment.EFCommentRep {
         public DBModelComment Add(AddModelComment model, String autorID) {
             DBModelComment newEntity = new() {
                 AuthorID = autorID,
-                CommentID = new Guid().ToString(),
+                CommentID = Guid.NewGuid().ToString(),
                 CreateDate = DateTime.Now,
                 ImageID = model.ImageID,
                 CommentText = model.CommentText

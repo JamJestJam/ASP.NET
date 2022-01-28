@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading;
 
 namespace ASP.net_Aplication.Extends {
     public static class StaticData {
-        public static readonly String path = Directory.GetParent(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)).Parent.Parent.FullName;
+        public static readonly String path = Directory.GetParent(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)).Parent.Parent.Parent.FullName;
 
         public static readonly IReadOnlyList<DBModelAccount> users = new List<DBModelAccount> {
             new DBModelAccountStorage() {
@@ -20,7 +22,7 @@ namespace ASP.net_Aplication.Extends {
                 Password = "zaq1@WSX",
                 Email = "email@email.com",
                 BirthDate = new DateTime(1998, 11, 25),
-                Id = "afb093f1-b21d-426a-b2e0-ecdff742b2af"
+                Id = Guid.NewGuid().ToString()
             },
             new DBModelAccountStorage() {
                 UserName = "Karola",
@@ -29,7 +31,7 @@ namespace ASP.net_Aplication.Extends {
                 Password = "zaq1@WSX",
                 Email = "Karola@email.com",
                 BirthDate = new DateTime(1990, 10, 12),
-                Id = "31a8387d-5e4d-4426-94cc-ecd0a7864f4e"
+                Id = Guid.NewGuid().ToString()
             },
             new DBModelAccountStorage() {
                 UserName = "Jaszczur",
@@ -38,7 +40,7 @@ namespace ASP.net_Aplication.Extends {
                 Password = "zaq1@WSX",
                 Email = "Jaszczur@email.com",
                 BirthDate = new DateTime(2001, 01, 01),
-                Id = "b2ef884b-d7b2-4aa7-84ab-ea0415968210"
+                Id = Guid.NewGuid().ToString()
             },
             new DBModelAccountStorage() {
                 UserName = "Admin",
@@ -47,7 +49,7 @@ namespace ASP.net_Aplication.Extends {
                 Password = "zaq1@WSX",
                 Email = "admin@email.com",
                 BirthDate = new DateTime(1998, 11, 25),
-                Id = "4dfad9aa-6017-4836-89df-aed82f655b2f"
+                Id = Guid.NewGuid().ToString()
             },
             new DBModelAccountStorage() {
                 UserName = "Admin2",
@@ -56,7 +58,7 @@ namespace ASP.net_Aplication.Extends {
                 Password = "zaq1@WSX",
                 Email = "admin2@email.com",
                 BirthDate = new DateTime(1990, 10, 12),
-                Id = "fed48f78-abac-406e-ab17-c27a27e6bbfd"
+                Id = Guid.NewGuid().ToString()
             }
         };
 
@@ -66,7 +68,7 @@ namespace ASP.net_Aplication.Extends {
                 new IdentityRole() {
                     Name = Role.Admin,
                     NormalizedName = Role.Admin.ToUpper(),
-                    Id= "860a20f9-3768-4832-b334-4184a18c006c",
+                    Id= Guid.NewGuid().ToString(),
                     ConcurrencyStamp = "30b9ebd8-fd3b-4dad-9842-1bb58de97760"
                 }
             },
@@ -75,7 +77,7 @@ namespace ASP.net_Aplication.Extends {
                 new IdentityRole() {
                     Name = Role.User,
                     NormalizedName = Role.User.ToUpper(),
-                    Id= "8ef9c940-acc9-4603-b6d6-8f9fa6be2800",
+                    Id= Guid.NewGuid().ToString(),
                     ConcurrencyStamp = "101e8163-68f9-4f42-bca1-08133538ea5e"
                 }
             }
@@ -110,21 +112,21 @@ namespace ASP.net_Aplication.Extends {
                 ImageName = "Image1.jpg",
                 ImageTitle = "Image1.jpg",
                 CreateDate = new DateTime(2020, 12, 25),
-                ImageID = "cda493c5-f7d1-4968-a2df-0c2162240fa0",
+                ImageID = Guid.NewGuid().ToString(),
             },
             new DBModelImageStorage {
                 AuthorID= users[3].Id,
                 ImageName = "Image2.png",
                 ImageTitle = "Image2.png",
                 CreateDate = new DateTime(2019, 11, 24),
-                ImageID = "02783261-ca59-432a-affd-de35e5c2b7d1",
+                ImageID = Guid.NewGuid().ToString(),
             },
             new DBModelImageStorage {
                 AuthorID= users[4].Id,
                 ImageName = "Image3.png",
                 ImageTitle = "Image3.png",
                 CreateDate = new DateTime(2018, 10, 23),
-                ImageID = "1a7b0d03-caed-4de5-ab58-98769049c166",
+                ImageID = Guid.NewGuid().ToString(),
             },
         };
 
@@ -134,35 +136,35 @@ namespace ASP.net_Aplication.Extends {
                 CreateDate = DateTime.Now,
                 ImageID = images[0].ImageID,
                 CommentText = "Komentarz 1",
-                CommentID = "2234f04d-f176-401f-8d2a-66882e0c9770",
+                CommentID = Guid.NewGuid().ToString(),
             },
             new DBModelComment {
                 AuthorID = users[2].Id,
                 CreateDate = DateTime.Now,
                 ImageID = images[1].ImageID,
                 CommentText = "Komentarz 2",
-                CommentID = "0661026b-03d1-4e98-a84d-f4ceadcdb265",
+                CommentID = Guid.NewGuid().ToString(),
             },
             new DBModelComment {
                 AuthorID = users[3].Id,
                 CreateDate = DateTime.Now,
                 ImageID = images[2].ImageID,
                 CommentText = "Komentarz 3",
-                CommentID = "146be234-dc45-4f2f-80d1-d01c18e6c679",
+                CommentID = Guid.NewGuid().ToString(),
             },
             new DBModelComment {
                 AuthorID = users[4].Id,
                 CreateDate = DateTime.Now,
                 ImageID = images[2].ImageID,
                 CommentText = "Komentarz 4",
-                CommentID = "56f71278-7844-4dd9-9939-5f6e79887b0c",
+                CommentID = Guid.NewGuid().ToString(),
             },
             new DBModelComment {
                 AuthorID = users[1].Id,
                 CreateDate = DateTime.Now,
                 ImageID = images[2].ImageID,
                 CommentText = "Komentarz 5",
-                CommentID = "78bfce5e-83f6-4b30-ab45-eed81fea6679",
+                CommentID = Guid.NewGuid().ToString(),
             }
         };
 
@@ -201,8 +203,9 @@ namespace ASP.net_Aplication.Extends {
             context.Images.AddRange(images);
             context.Comments.AddRange(comments);
             context.Rates.AddRange(rates);
-
             context.SaveChanges();
+
+            Console.WriteLine("siema");
         }
     }
 }

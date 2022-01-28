@@ -9,7 +9,7 @@ namespace ASP.net_Aplication.Models.Image.EFImageRep {
                 .Include(a => a.Author)
                 .Include(a => a.Rates)
                 .Include(a => a.Comments)
-                .ThenInclude(b => b.Author)
+                    .ThenInclude(b => b.Author)
                 .Where(a => a.ImageID == imageID)
                 .Select(a => new ShowModelImage(a, userID, page))
                 .ToList()

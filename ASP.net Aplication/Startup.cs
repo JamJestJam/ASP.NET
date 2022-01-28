@@ -36,16 +36,16 @@ namespace ASP.net_Aplication {
                 .AddMvcOptions(o => o.Filters.AddService<AuthorizationApi>())
                 .AddJsonOptions(o => o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
             //database
-            //if (UnitTestDetector.IsRunningFromNUnit) {
-                services.AddDbContext<DbConnect>(opt => opt.UseInMemoryDatabase(new Guid().ToString()));
-            //} else {
-            //services.AddDbContext<DbConnect>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
-            //}
+            if (!UnitTestDetector.IsRunningFromTest) {
+                services.AddDbContext<DbConnect>(o => o.UseSqlServer(this.Configuration["DataBase:Connect"]));
+            }
+            
             services.AddTransient<IRep, Rep>();
             //identity
             services.AddIdentity<DBModelAccount, IdentityRole>()
                 .AddEntityFrameworkStores<DbConnect>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddErrorDescriber<PLIdentityErrors>();
             //Authorization
             services.AddAuthorization(o => {
                 foreach (FieldInfo p in typeof(Role).GetFields()) {
@@ -59,8 +59,8 @@ namespace ASP.net_Aplication {
             services.AddTransient<ICommentRep, EFCommentRep>();
 
 
-            IImageRep.PerPage = Int32.Parse(this.Configuration["Content:ImagePerPage"]);
-            ICommentRep.PerPage = Int32.Parse(this.Configuration["Content:CommentsPerPage"]);
+            IImageRep.PerPage = 2;/*Int32.Parse(this.Configuration["Content:ImagePerPage"]);*/
+            ICommentRep.PerPage = 2;/*Int32.Parse(this.Configuration["Content:CommentsPerPage"]);*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,10 +88,10 @@ namespace ASP.net_Aplication {
                     pattern: "{controller=Home}/{action=Index}/{id?}")
             );
 
-            //if (UnitTestDetector.IsRunningFromNUnit) {
+            if (UnitTestDetector.IsRunningFromTest) {
                 DbConnect context = app.ApplicationServices.GetService<DbConnect>();
-                StaticData.SeedData(context);
-            //}
+                context.Database.EnsureCreated();
+            }
         }
     }
 }

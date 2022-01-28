@@ -26,7 +26,7 @@ namespace ASP.net_Aplication.Models.Image {
         public ShowModelImage(DBModelImage model, String userID, Int32 page) : this(model, userID) {
             if (model.Comments != null)
                 this.Comments = model.Comments
-                    .OrderBy(a => a.CreateDate)
+                    .OrderByDescending(a => a.CreateDate)
                     .Skip(page * ICommentRep.PerPage)
                     .Take(ICommentRep.PerPage)
                     .Select(b => new ShowModelComment(b, userID));

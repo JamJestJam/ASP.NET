@@ -41,7 +41,7 @@ namespace ASP.net_Aplication.Models.Image {
 
             builder.Entity<DBModelImage>()
                 .HasData(StaticData.images);
-
+            
             builder.Entity<DBModelImage>()
                 .HasOne(a => a.Author)
                 .WithMany(a => a.Images)
@@ -62,7 +62,7 @@ namespace ASP.net_Aplication.Models.Image {
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
         public static implicit operator DBModelImage(DBModelImageStorage model) {
-            String path = Path.Combine(StaticData.path, $"wwwroot\\firstImg\\{model.ImageName}");
+            String path = Path.Combine(StaticData.path, $"ASP.net Aplication\\wwwroot\\firstImg\\{model.ImageName}");
             return new DBModelImage() {
                 ImageID = model.ImageID,
                 AuthorID = model.AuthorID,

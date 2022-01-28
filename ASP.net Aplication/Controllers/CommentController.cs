@@ -31,7 +31,7 @@ namespace ASP.net_Aplication.Controllers {
 
                 return this.RedirectToAction("Index", "Image", new { imageID = model.ImageID });
             } else {
-                return this.View();
+                return this.View(model: model);
             }
         }
 
@@ -56,7 +56,7 @@ namespace ASP.net_Aplication.Controllers {
                 rep.UpdateText(model);
                 return this.Redirect(model?.ReturnUrl ?? "/");
             } else {
-                return this.View();
+                return this.View(model: model);
             }
         }
 
@@ -76,7 +76,7 @@ namespace ASP.net_Aplication.Controllers {
                 rep.UpdateText(model);
                 return this.Redirect(model?.ReturnUrl ?? "/");
             } else {
-                return this.View();
+                return this.View(model: model);
             }
         }
 

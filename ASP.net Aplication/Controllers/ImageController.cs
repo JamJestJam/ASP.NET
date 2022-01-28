@@ -52,7 +52,7 @@ namespace ASP.net_Aplication.Controllers {
 
                 return this.Redirect("/");
             } else {
-                return this.View();
+                return this.View(model: model);
             }
         }
 
@@ -78,15 +78,15 @@ namespace ASP.net_Aplication.Controllers {
 
                 return this.Redirect(model?.ReturnUrl ?? "/");
             } else {
-                return this.View();
+                return this.View(model: model);
             }
         }
 
         [HttpGet]
         [Authorize(Role.Admin)]
-        public IActionResult UpdateAdmin(String imageID, String retunUrl) {
+        public IActionResult UpdateAdmin(String imageID, String returnUrl) {
             UpdateModelImage data = rep.GetImageUpdate(imageID, userManager.GetUserId(this.User));
-            data.ReturnUrl = retunUrl;
+            data.ReturnUrl = returnUrl;
 
             return this.View(model: data);
         }

@@ -4,7 +4,7 @@
 Konfigurację należy zacząć od ustawienia "ConnectionString" w pliku "appsetings.json" wewnątrz projektu "ASP .net Aplication" pod nazwą "DataBase"=>"Connect". 
 ### Tworzenie bazy danych
 W konsoli menedżera pakietów wpisać odpowiednie komendy: 
-`add-migration`
+`add-migration mig`
 `update-database`
 Po ich wpisaniu powinna stworzyć się baza danych.
 ### Ostatnim punktem konfiguracji jest sprawdzenie czy pobrały się wszystkie pakiety
